@@ -4,10 +4,111 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-10 mx-auto">
-                Test
+            <div class="col-md-10 col-sm-11 mx-auto row">
+                <div class="col-md-12">
+                    <form action="{{route('working_time_add')}}" method="post">
+                        <div class="form-group">
+                            <label for="working_time">Zeit <p class="text-muted d-inline">in Minuten</p></label>
+
+                            <input type="text" name="working_time" id="working_time" class="form-control" required value="{{old('working_time') ? old('working_time') : ''}}">
+                            @if($errors->has('working_time'))
+                                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <ul class="m-0">
+                                    @foreach($errors->get('working_time') as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Beschreibung <p class="text-muted d-inline">Optional</p></label>
+
+                            <input type="text" name="description" id="description" class="form-control" value="{{old('description') ? old('description') : ''}}">
+                            @if($errors->has('description'))
+                                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <ul class="m-0">
+                                    @foreach($errors->get('description') as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label for="working_ticket">Ticket <p class="text-muted d-inline">Optional</p></label>
+
+                            <select name="working_ticket" id="working_ticket" class="custom-select form-control">
+                                <option value="" {{old('working_ticket') ? old('working_ticket') === "" ? "selected" : '': ''}}>Keines</option>
+                                @foreach ($working_tickets as $ticket)
+                                    <option value="{{$ticket->id}}" {{old('working_ticket') ? $ticket->id == old('working_ticket')? "selected" : '': ''}}>{{$ticket->name}}</option>
+                                @endforeach
+                            </select>
+
+                            @if($errors->has('working_ticket'))
+                                <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <ul class="m-0">
+                                    @foreach($errors->get('working_ticket') as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                        </div>
+                        <button type="submit" class="form-control btn btn-success"><i class="fa fa-plus"></i> Hinzufügen</button>
+                        {{ csrf_field() }}
+                    </form>
+
+                </div>
+
+                <div class="col-md-12 mt-4">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex">
+                            <div class="col-md-2"><p class="m-0">Zeit</p></div>
+                            <div class="col-md-6"><p class="m-0">Beschreibung</p></div>
+                            <div class="col-md-3"><p class="m-0">Ticket</p></div>
+                            <div class="col-md-1 d-flex"><p class="ml-auto m-0">Bestädigt</p></div>
+
+                        </li>
+                        @foreach ($working_times as $job)
+                            <li class="list-group-item p-1 d-flex">
+                                <div class="col-md-2">
+                                    {{$job->working_time}}
+                                </div>
+                                <div class="col-md-6">
+                                    {{$job->description}}
+                                </div>
+                                <div class="col-md-3">
+                                    @if($job->working_ticket)
+                                        {{$job->working_ticket->name}}
+                                    @else
+                                        -
+                                    @endif
+
+                                </div>
+                                <div class="col-md-1 d-flex">
+                                    @if($job->confirmed)
+                                        <i class="fa fa-check btn btn-success ml-auto"></i>
+                                    @else
+                                        <i class="fa fa-times btn btn-danger ml-auto"></i>
+                                    @endif
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-
     </div>
 @endsection

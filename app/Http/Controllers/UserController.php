@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function show(User $user)
     {
-
+        // TODO: add some profile view in here
         dd($user);
         return $user;
     }
