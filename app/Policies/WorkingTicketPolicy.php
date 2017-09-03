@@ -24,4 +24,9 @@ class WorkingTicketPolicy
     {
         return $user->id === $working_ticket->author->id;
     }
+
+    public function remove_user(User $user, WorkingTicket $working_ticket)
+    {
+        return $user->id === $working_ticket->author->id;
+    }
 }

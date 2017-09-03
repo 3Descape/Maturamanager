@@ -1,5 +1,5 @@
 <div class="col-md-6 col-lg-4 pb-4">
-    <div class="card" style="height: 100%">
+    <div class="card h-100" >
         <div class="card-body">
             @isset($ticket->thumbnail)
                 //Platzhalter
@@ -40,10 +40,13 @@
                     @foreach ($ticket->users as $user)
                         <li class="list-group-item d-flex">
                             <a href="{{route('user_show', $user->slug)}}">{{$user->name}}</a>
-                            <form class="ml-auto" action="{{route('working_tickets_remove_user', [$ticket->id, $user->slug])}}" method="post">
-                                <button type="submit" class="btn btn-danger" {{$ticket->author->slug == $user->slug ? "disabled" : "" }}><i class="fa fa-trash"></i></button>
-                                {{ csrf_field() }}
-                            </form>
+
+                            @can('remove_user', $ticket)
+                                <form class="ml-auto" action="{{route('working_tickets_remove_user', [$ticket->id, $user->slug])}}" method="post">
+                                    <button type="submit" class="btn btn-danger" {{$ticket->author->slug == $user->slug ? "disabled" : "" }}><i class="fa fa-trash"></i></button>
+                                    {{ csrf_field() }}
+                                </form>
+                            @endcan
                         </li>
                     @endforeach
                 </ul>
