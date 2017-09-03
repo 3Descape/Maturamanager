@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'slug',
     ];
 
     /**
@@ -26,4 +26,34 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function setNameAttribute($name)
+    {
+        $this->attributes['name'] = strtolower($name);
+    }
+
+    public function getNameAttribute($name)
+    {
+        return ucwords($name);
+    }
+
+    public function working_times()
+    {
+        return $this->hasMany('App\WorkingTime');
+    }
+
+    public function working_tickets()
+    {
+        return $this->belongsToMany('App\WorkingTicket')->withTimestamps();
+    }
+
+    public function working_tickets_created()
+    {
+        return $this->hasMany('App\WorkingTicket');
+    }
 }
