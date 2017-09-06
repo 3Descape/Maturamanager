@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-10 col-sm-11 mx-auto row">
+            <div class="col-md-10 col-12 col-sm-11 mx-auto row">
                 <div class="col-md-12">
                     <form action="{{route('working_time_add')}}" method="post">
                         <div class="form-group">
@@ -74,22 +74,22 @@
 
                 <div class="col-md-12 mt-4">
                     <ul class="list-group">
-                        <li class="list-group-item d-flex">
-                            <div class="col-md-2"><p class="m-0">Zeit</p></div>
-                            <div class="col-md-6"><p class="m-0">Beschreibung</p></div>
-                            <div class="col-md-3"><p class="m-0">Ticket</p></div>
-                            <div class="col-md-1 d-flex"><p class="ml-auto m-0">Bestädigt</p></div>
+                        <li class="list-group-item p-1 d-flex">
+                            <div class="col-lg-2 col-md-2"><p class="m-0">Zeit</p></div>
+                            <div class="col-lg-6 col-md-8"><p class="m-0">Beschreibung</p></div>
+                            <div class="col-lg-3 d-none d-lg-block"><p class="m-0">Ticket</p></div>
+                            <div class="col-lg-1 col-md-2 d-flex"><p class="ml-auto m-0">Bestätigt</p></div>
 
                         </li>
                         @foreach ($working_times as $job)
                             <li class="list-group-item p-1 d-flex">
-                                <div class="col-md-2">
+                                <div class="col-lg-2 col-md-2">
                                     {{$job->working_time}}
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-lg-6 col-md-8">
                                     {{$job->description}}
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 d-none d-lg-block">
                                     @if($job->working_ticket)
                                         {{$job->working_ticket->name}}
                                     @else
@@ -97,11 +97,11 @@
                                     @endif
 
                                 </div>
-                                <div class="col-md-1 d-flex">
+                                <div class="col-lg-1 d-flex col-md-2">
                                     @if($job->confirmed)
-                                        <i class="fa fa-check btn btn-success ml-auto"></i>
+                                        <i class="fa align-self-start fa-check btn btn-success ml-auto"></i>
                                     @else
-                                        <i class="fa fa-times btn btn-danger ml-auto"></i>
+                                        <i class="fa align-self-start fa-times btn btn-danger ml-auto"></i>
                                     @endif
                                 </div>
                             </li>

@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
     <a class="navbar-brand" href="{{route('home')}}">Maturamanager</a>
-    <p class="d-lg-none navbar-brand text-muted ml-auto m-0 p-0 mr-2">{{Auth::user()->name}}</p>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>

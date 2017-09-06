@@ -7,22 +7,45 @@
             @endisset
             <h4 class="card-title d-flex">{{$ticket->name}}
                 <div class="ml-auto align-self-start d-flex">
-                    <button class="btn {{$ticket->completed ? 'btn-success' : 'btn-danger'}}">
-                        @if($ticket->completed)
-                            <i class="fa fa-check"></i>
+                    @if($ticket->completed)
+                        @if(Auth::user()->id === $ticket->author->id)
+                            <form action="{{route('working_tickets_uncompleted_status', $ticket->id)}}" method="post">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                                {{ csrf_field() }}
+                                {{method_field('PUT')}}
+                            </form>
                         @else
-                            <i class="fa fa-cogs"></i>
+                            <div class="btn btn-success">
+                                <i class="fa fa-check"></i>
+                            </div>
                         @endif
-                    </button>
+                    @else
+                        @if(Auth::user()->id === $ticket->author->id)
+                            <form action="{{route('working_tickets_completed_status', $ticket->id)}}" method="post">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-cogs"></i>
+                                </button>
+                                {{ csrf_field() }}
+                                {{method_field('PUT')}}
+                            </form>
+                        @else
+                            <div class="btn btn-danger">
+                                <i class="fa fa-cogs"></i>
+                            </div>
+                        @endif
+                    @endif
                 </div>
             </h4>
-            <p class="card-text">{{$ticket->description}}</p>
 
-            <a class="btn btn-primary" data-toggle="collapse" href="#users{{$ticket->id}}" aria-expanded="false" aria-controls="users">
+            <ticket-description :ticket-prop="{{json_encode($ticket)}}"></ticket-description>
+
+            <a class="btn btn-primary" data-toggle="collapse" href="#users{{$ticket->id}}" aria-expanded="{{request()->has('ticket_opened') ? request()->get('ticket_opened') == $ticket->id ? 'true' : 'false' : 'false'}}" aria-controls="users">
               Personen <i class="fa fa-caret-down"></i>
             </a>
 
-            <div class="collapse" id="users{{$ticket->id}}">
+            <div class="collapse {{request()->has('ticket_opened') ? request()->get('ticket_opened') == $ticket->id ? 'show' : '' : ''}}" id="users{{$ticket->id}}">
                 @can('add_user', $ticket)
                     <form action="{{route('working_tickets_add_user', $ticket->id)}}" method="post">
                         <div class="input-group mt-2">
@@ -51,6 +74,8 @@
                     @endforeach
                 </ul>
             </div>
+
+            <p class="text-muted mt-4">Du hast {{round($ticket->user_worked_time_on_ticket(Auth::user())/60, 2)}} Stunden an diesem Ticket mitgearbeitet.</p>
         </div>
 
         <div class="card-footer text-muted">

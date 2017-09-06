@@ -22,12 +22,11 @@ class WorkingTicketController extends Controller
     }
     public function index()
     {
-        $working_tickets = Auth::user()->working_tickets()->with('users', 'author')->get();
+        $working_tickets = Auth::user()->working_tickets()->with('users', 'author', 'working_times')->get();
         $users = User::all();
-        //return $working_tickets;
         return view('sites.working_tickets.working_tickets', compact([
-            'working_tickets',
-            'users'
+           'working_tickets',
+           'users'
         ]));
     }
 
@@ -100,6 +99,30 @@ class WorkingTicketController extends Controller
         //
     }
 
+    public function update_description(Request $request, WorkingTicket $workingTicket)
+    {
+        $workingTicket->update([
+            'description' => $request->description
+        ]);
+        return response()->json(['status' => 'success'], 200);
+    }
+
+    public function completed_status(WorkingTicket $workingTicket)
+    {
+        $workingTicket->update([
+            'completed' => true
+        ]);
+        return back();
+    }
+
+    public function uncompleted_status(WorkingTicket $workingTicket)
+    {
+        $workingTicket->update([
+            'completed' => false
+        ]);
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -114,16 +137,16 @@ class WorkingTicketController extends Controller
     public function add_user(Request $request, WorkingTicket $workingTicket)
     {
         $workingTicket->users()->save(User::find($request->user_id));
-        return back();
+        return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
     }
 
     public function remove_user(WorkingTicket $workingTicket, User $user)
     {
-        if($workingTicket->author->id== $user->id){
-            return back();
+        if($workingTicket->author->id == $user->id){
+            return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
         }
-        
+
         $workingTicket->users()->detach($user->id);
-        return back();
+        return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
     }
 }

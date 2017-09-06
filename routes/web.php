@@ -19,6 +19,9 @@ Route::get('/working_tickets', 'WorkingTicketController@index')->name('working_t
 Route::post('/working_tickets', 'WorkingTicketController@store')->name('working_tickets_store');
 Route::post('/working_tickets/{working_ticket}/add_user', 'WorkingTicketController@add_user')->name('working_tickets_add_user');
 Route::post('working_tickets/{working_ticket}/remove_user/{user}', 'WorkingTicketController@remove_user')->name('working_tickets_remove_user');
+Route::put('working_tickets/{working_ticket}/status/completed', 'WorkingTicketController@completed_status')->name('working_tickets_completed_status');
+Route::put('working_tickets/{working_ticket}/status/uncompleted', 'WorkingTicketController@uncompleted_status')->name('working_tickets_uncompleted_status');
+Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicketController@update_description')->name('working_tickets_update_description');
 
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');
 

@@ -13,7 +13,7 @@ class WorkingTicket extends Model
         return $this->belongsToMany('App\User')->withTimestamps()->orderBy('pivot_created_at', 'desc');
     }
 
-    public function working_time()
+    public function working_times()
     {
         return $this->hasMany('App\WorkingTime');
     }
@@ -26,5 +26,15 @@ class WorkingTicket extends Model
     public function getNameAttribute($name)
     {
         return ucfirst($name);
+    }
+
+    public function setDescriptionAttribute($value)
+    {
+        $this->attributes['description'] = nl2br($value);
+    }
+
+    public function user_worked_time_on_ticket(User $user)
+    {
+        return $this->working_times->where('working_ticket_id', $this->id)->where('user_id', $user->id)->sum('working_time');
     }
 }
