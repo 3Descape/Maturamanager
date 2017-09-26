@@ -25,6 +25,8 @@ Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicket
 
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');
 
+Route::get('/working_time/manage', 'ManageWorkingTimeController@index')->name('working_time_manage');
+Route::put('/working_time/{workingTime}/toggleConfirm', 'ManageWorkingTimeController@update')->name('working_time_toggle');
 Route::get('/profile/{user}', 'UserController@show')->name('user_show');
 
 Route::auth();

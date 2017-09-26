@@ -51,7 +51,7 @@ class WorkingTimeController extends Controller
 
         $data = $this->validate($request,[
             'working_time' => 'required|integer|min:2',
-            'description' => 'string|nullable',
+            'description' => 'required|string',
             'working_ticket' => 'sometimes|nullable|integer|exists:working_tickets,id'
         ]);
 
@@ -63,7 +63,6 @@ class WorkingTimeController extends Controller
         ]);
 
         return back();
-
     }
 
     /**

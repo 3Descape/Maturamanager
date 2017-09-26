@@ -11,7 +11,7 @@ window.Vue = require('vue');
 
 
 Vue.component('ticket-description', require('./components/TicketDescription.vue'));
-
+Vue.component('working-time-confirm', require('./components/WorkingTimeConfirm.vue'));
 const app = new Vue({
     el: '#app'
 });

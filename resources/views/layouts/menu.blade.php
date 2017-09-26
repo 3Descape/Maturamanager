@@ -18,6 +18,12 @@
                 <a class="nav-link {{Request::route()->getName() == 'working_tickets' ? 'active' : ''}}" href="{{route('working_tickets')}}">Tickets</a>
             </li>
 
+            @can('can_manage_working_time', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link {{Request::route()->getName() == 'working_time_manage' ? 'active' : ''}}" href="{{route('working_time_manage')}}">Arbeitszeiten</a>
+                </li>
+            @endcan
+
         </ul>
 
 

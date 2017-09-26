@@ -17,4 +17,9 @@ class WorkingTime extends Model
     {
         return $this->belongsTo('App\WorkingTicket');
     }
+
+    public function scopeUnconfirmed($query)
+    {
+        return $query->where('confirmed', false);
+    }
 }

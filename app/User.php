@@ -56,4 +56,46 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\WorkingTicket');
     }
+
+    /**
+     * Return associated roles for the user
+     * @method roles
+     * @return Collection
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function assignRole(Role $role)
+    {
+        return $this->roles()->save($role);
+    }
+
+    /**
+     * Checks if user is associated with a given role
+     * @method hasRole
+     * @param  string  $role String representing a role or Class of App\Role
+     * @return boolean       Returns wheter user has role or not
+     */
+    public function hasRole($role)
+    {
+        if(is_string($role)){
+            return $this->roles->contains('name', $role);
+        }
+        return !! $role->intersection($this->roles)->count();
+    }
+
+    public function hasPermission($permission)
+    {
+        $contains = $this->roles()
+        ->with('permissions')
+        ->get()
+        ->map(function($item) use ($permission){
+            return $item->permissions
+            ->contains('name', $permission);
+        });
+
+        return in_array(true, $contains->toArray());
+    }
 }
