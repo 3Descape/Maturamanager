@@ -8,10 +8,11 @@
  require('./bootstrap');
 
 window.Vue = require('vue');
+window.Marked = require('marked');
 
 
-Vue.component('ticket-description', require('./components/TicketDescription.vue'));
+Vue.component('workingticket', require('./components/WorkingTicket.vue'));
 Vue.component('working-time-confirm', require('./components/WorkingTimeConfirm.vue'));
-const app = new Vue({
+const App = new Vue({
     el: '#app'
 });

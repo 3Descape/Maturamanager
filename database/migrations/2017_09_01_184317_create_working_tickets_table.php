@@ -18,7 +18,8 @@ class CreateWorkingTicketsTable extends Migration
             $table->string('name');
             $table->integer('user_id')->unsigned();
             $table->string('slug')->unique();
-            $table->string('description');
+            $table->text('markup');
+            $table->text('html');
             $table->boolean('completed')->default(0);
             $table->string('thumbnail')->nullable();
             $table->boolean('visible')->default(0);

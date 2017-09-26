@@ -24,6 +24,7 @@ class WorkingTicketController extends Controller
     {
         $working_tickets = Auth::user()->working_tickets()->with('users', 'author', 'working_times')->get();
         $users = User::all();
+        //return $working_tickets;
         return view('sites.working_tickets.working_tickets', compact([
            'working_tickets',
            'users'
@@ -50,7 +51,8 @@ class WorkingTicketController extends Controller
     {
         $data = $this->validate($request, [
             'name' => 'required',
-            'description' => 'required',
+            'markup' => 'required',
+            'html' => 'required'
         ]);
 
         $slugs = WorkingTicket::pluck('slug')->toArray();
@@ -59,7 +61,8 @@ class WorkingTicketController extends Controller
             'name' => $data['name'],
             'slug' => $this->generateUniqueSlug($request['name'], $slugs),
             'user_id' => Auth::user()->id,
-            'description' => $data['description'],
+            'markup' => $data['description'],
+            'html' => $data['html'],
         ])->users()->save(Auth::user());
 
         return back();
@@ -107,20 +110,12 @@ class WorkingTicketController extends Controller
         return response()->json(['status' => 'success'], 200);
     }
 
-    public function completed_status(WorkingTicket $workingTicket)
+    public function update_status(Request $request, WorkingTicket $workingTicket)
     {
         $workingTicket->update([
-            'completed' => true
+            'completed' => $request->completed
         ]);
-        return back();
-    }
-
-    public function uncompleted_status(WorkingTicket $workingTicket)
-    {
-        $workingTicket->update([
-            'completed' => false
-        ]);
-        return back();
+        return response()->json(['status' => 'updated status'], 200);
     }
 
     /**

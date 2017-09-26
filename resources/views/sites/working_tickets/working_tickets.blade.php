@@ -51,8 +51,10 @@
                 </div>
 
                 @foreach ($working_tickets as $ticket)
-                    @component('components.comp_working_ticket', ['ticket' => $ticket, 'addable_users' => $users->diff($ticket->users)])
-                    @endcomponent
+                    {{-- @component('components.comp_working_ticket', ['ticket' => $ticket, 'addable_users' => $users->diff($ticket->users)])
+                    @endcomponent --}}
+
+                    <workingticket :ticket-prop="{{$ticket}}" :users-to-add-prop="{{$users->diff($ticket->users)}}" :auth-user-prop="{{Auth::user()}}"></workingticket>
                 @endforeach
             </div>
         </div>

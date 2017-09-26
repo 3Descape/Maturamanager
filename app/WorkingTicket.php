@@ -1,12 +1,15 @@
 <?php
 
 namespace App;
+use Auth;
 
 use Illuminate\Database\Eloquent\Model;
 
 class WorkingTicket extends Model
 {
-    protected $fillable = ['name', 'user_id', 'slug', 'description', 'completed', 'thumbnail', 'visible'];
+    protected $fillable = ['name', 'user_id', 'slug', 'markup', 'html', 'completed', 'thumbnail', 'visible'];
+
+    protected $appends = ['timeCount'];
 
     public function users()
     {
@@ -33,8 +36,8 @@ class WorkingTicket extends Model
         $this->attributes['description'] = nl2br($value);
     }
 
-    public function user_worked_time_on_ticket(User $user)
+    public function getTimeCountAttribute()
     {
-        return $this->working_times->where('working_ticket_id', $this->id)->where('user_id', $user->id)->sum('working_time');
+        return round($this->working_times->where('working_ticket_id', $this->id)->where('user_id', Auth::user()->id)->sum('working_time')/60, 2);
     }
 }

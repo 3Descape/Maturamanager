@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\WorkingTime;
 
 class NavigationController extends Controller
 {
@@ -13,6 +14,9 @@ class NavigationController extends Controller
 
     public function home()
     {
-        return view('sites.home');
+        $mostRecentWorkingTimes = WorkingTime::mostRecent()->with('user')->get();
+        return view('sites.home', compact([
+            'mostRecentWorkingTimes'
+        ]));
     }
 }

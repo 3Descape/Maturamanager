@@ -13,13 +13,16 @@
         "axios": "^0.16.2",
         "bootstrap": "^4.0.0-beta",
         "cross-env": "^5.0.1",
-        "jquery": "^3.1.1",
-        "laravel-mix": "^1.0",
-        "lodash": "^4.17.4",
-        "vue": "^2.4.2",
         "font-awesome": "^4.7.0",
+        "jquery": "^3.1.1",
+        "laravel-mix": "^1.4.5",
+        "lodash": "^4.17.4",
         "popper.js": "^1.12.5",
-        "purify-css": "^1.2.5",
-        "purifycss-webpack": "^0.7.0"
+        "purify-css": "^1.2.6",
+        "purifycss-webpack": "^0.7.0",
+        "vue": "^2.4.4"
+    },
+    "dependencies": {
+        "marked": "^0.3.6"
     }
 }

@@ -22,4 +22,9 @@ class WorkingTime extends Model
     {
         return $query->where('confirmed', false);
     }
+
+    public function scopeMostRecent($query)
+    {
+        return $query->take(10)->orderBy('created_at', 'desc');
+    }
 }
