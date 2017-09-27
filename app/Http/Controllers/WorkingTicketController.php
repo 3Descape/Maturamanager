@@ -107,7 +107,7 @@ class WorkingTicketController extends Controller
         $workingTicket->update([
             'description' => $request->description
         ]);
-        return response()->json(['status' => 'success'], 200);
+        return response()->json(['status' => 'Beschreibung wurde bearbeitet', 'type' => 'success'], 200);
     }
 
     public function update_status(Request $request, WorkingTicket $workingTicket)
@@ -115,7 +115,7 @@ class WorkingTicketController extends Controller
         $workingTicket->update([
             'completed' => $request->completed
         ]);
-        return response()->json(['status' => 'updated status'], 200);
+        return response()->json(['status' => 'Status wurde aktualisiert', 'type' => 'success'], 200);
     }
 
     /**
@@ -132,16 +132,16 @@ class WorkingTicketController extends Controller
     public function add_user(Request $request, WorkingTicket $workingTicket)
     {
         $workingTicket->users()->save(User::find($request->user_id));
-        return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
+        return response()->json(['status' => 'Benutzer wurde hinzugefügt', 'type' => 'success'], 200);
     }
 
-    public function remove_user(WorkingTicket $workingTicket, User $user)
+    public function remove_user(Request $request, WorkingTicket $workingTicket)
     {
-        if($workingTicket->author->id == $user->id){
-            return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
+        if($workingTicket->author->id == $request->user_id){
+            return response()->json(['status' => 'Der Author kann nicht gelöscht werden.', 'type' => 'danger']);
         }
 
-        $workingTicket->users()->detach($user->id);
-        return redirect()->route('working_tickets', ['ticket_opened' => $workingTicket->id]);
+        $workingTicket->users()->detach($request->user_id);
+        return response()->json(['status' => 'Der Nutzer wurde entfernt', 'type' => 'success']);
     }
 }

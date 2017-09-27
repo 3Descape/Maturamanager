@@ -14,6 +14,11 @@
                         </div>
                     </div>
                 </h4>
+                <transition name="fade">
+                    <div class="alert info" :class="messageClass" role="alert" v-show="msg.show">
+                        <i class="fa fa-info-circle"></i> {{msg.message}}
+                    </div>
+                </transition>
 
                 <div v-show="!edit_state" class="description_wrp">
                     <p v-html="compiledMarkdown"></p>
@@ -34,11 +39,6 @@
                     </fieldset>
                 </div>
 
-                <transition name="fade">
-                    <div class="alert alert-success info" role="alert" v-show="msg">
-                        <i class="fa fa-info-circle"></i> Aktualisiert
-                    </div>
-                </transition>
 
                 <a class="btn btn-primary" data-toggle="collapse" :href="'#users'+ticket.id" aria-expanded="false" aria-controls="users">
                   Personen <i class="fa fa-caret-down"></i>
@@ -61,7 +61,7 @@
                         <li v-for="user in ticket.users" class="list-group-item d-flex">
                             <a :href="'/profile/'+ user.slug">{{user.name}}</a>
 
-                            <form v-if="isAuthor(authUser)" class="ml-auto"  @submit.prevent="removeUser">
+                            <form v-if="isAuthor(authUser)" class="ml-auto"  @submit.prevent="removeUser(user)">
                                 <button type="submit" class="btn btn-danger" :disabled="isAuthor(user)">
                                     <i class="fa fa-trash"></i>
                                 </button>
@@ -83,6 +83,22 @@
 </template>
 
 <script>
+    class Message {
+        constructor(){
+            this.show = false;
+            this.type = "success";
+            this.message = "";
+        }
+
+        showMessage(msg, type = "success"){
+            this.message = msg;
+            this.type = type;
+            this.show = true;
+            setTimeout(() => {
+                this.show = false;
+            }, 2000);
+        }
+    }
     export default {
         props: ['ticketProp', 'usersToAddProp', 'authUserProp'],
         data: function(){
@@ -90,7 +106,7 @@
                 ticket: this.ticketProp,
                 edit_state: false,
                 updating: false,
-                msg: false,
+                msg: new Message(),
                 addableUsers: this.usersToAddProp,
                 authUser: this.authUserProp,
                 api: {},
@@ -110,13 +126,10 @@
                     _method: "PUT"
                 }).then(function (response) {
                     vue.edit_state = false;
-                    vue.msg = true;
-                    vue.updating = false;
-                    setTimeout(function(){
-                        vue.msg = false;
-                    }, 2000);
+                    vue.msg.showMessage(response.data.status);
                 })
                 .catch(function (errors) {
+                    vue.msg.showMessage("Fehler", "danger")
                 });
             },
             isAuthor: function(user){
@@ -129,35 +142,56 @@
                     completed: vue.ticket.completed,
                     _method: "PUT"
                 }).then(function (response) {
-                    vue.msg = true;
-                    setTimeout(function(){
-                        vue.msg = false;
-                    }, 2000);
+                    vue.msg.showMessage(response.data.status)
                 })
                 .catch(function (errors) {
+                    vue.msg.showMessage("Fehler", "danger")
                 });
             },
             addUser: function(){
-                let ids = this.addableUsers.map(function(item){
-                    return item.id;
-                });
+                let vue = this;
+                axios.post(this.api.add_user, {
+                    user_id: vue.selectedPerson,
+                }).then(function(response) {
+                    let ids = vue.addableUsers.map(function(item){
+                        return item.id;
+                    });
+                    let id = ids.indexOf(vue.selectedPerson);
+                    vue.ticket.users.push(vue.addableUsers[id])
+                    vue.addableUsers.splice(id, 1);
+                    vue.selectedPerson = vue.addableUsers[0].id
 
-                let id = ids.indexOf(this.selectedPerson);
-                this.addableUsers.splice(id, 1);
-                this.selectedPerson = this.addableUsers[0].id
-                console.log(this.selectedPerson);
+                    vue.msg.showMessage(response.data.status)
+                })
+                .catch(function (errors) {
+                    vue.msg.showMessage("Fehler", "danger");
+                });
             },
-            removeUser: function(){
-                console.log('remove user')
+            removeUser: function(user){
+                let vue = this;
+                axios.post(this.api.remove_user, {
+                    user_id: user.id,
+                }).then(function(response) {
+                    let ids = vue.ticket.users.map(function(item){
+                        return item.id;
+                    });
+                    let id = ids.indexOf(user.id);
+                    vue.addableUsers.push(user);
+                    vue.ticket.users.splice(id, 1);
+                    vue.msg.showMessage(response.data.status);
+                })
+                .catch(function (errors) {
+                    vue.msg.showMessage("Fehler", "danger");
+                });
             }
         },
         computed: {
             compiledMarkdown: function(){
                 return Marked(this.ticket.markup);
+            },
+            messageClass: function(){
+                return 'alert-' + this.msg.type;
             }
-        },
-        mounted() {
-            console.log('Component mounted.')
         },
         created: function(){
             Marked.setOptions({
@@ -168,6 +202,7 @@
 
             this.api.status_update = `working_tickets/${this.ticket.id}/status/update`;
             this.api.add_user = `/working_tickets/${this.ticket.id}/add_user`;
+            this.api.remove_user = `/working_tickets/${this.ticket.id}/remove_user`;
             this.api.update_description = `/working_tickets/${this.ticket.id}/update_description`;
 
             this.selectedPerson = this.addableUsers[0].id

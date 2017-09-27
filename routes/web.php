@@ -18,7 +18,7 @@ Route::get('/working_times', 'WorkingTimeController@index')->name('working_times
 Route::get('/working_tickets', 'WorkingTicketController@index')->name('working_tickets');
 Route::post('/working_tickets', 'WorkingTicketController@store')->name('working_tickets_store');
 Route::post('/working_tickets/{working_ticket}/add_user', 'WorkingTicketController@add_user')->name('working_tickets_add_user');
-Route::post('working_tickets/{working_ticket}/remove_user/{user}', 'WorkingTicketController@remove_user')->name('working_tickets_remove_user');
+Route::post('working_tickets/{working_ticket}/remove_user/', 'WorkingTicketController@remove_user')->name('working_tickets_remove_user');
 Route::put('working_tickets/{working_ticket}/status/update', 'WorkingTicketController@update_status')->name('working_ticket_update_status');
 Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicketController@update_description')->name('working_tickets_update_description');
 
