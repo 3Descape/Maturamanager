@@ -16,6 +16,9 @@
 
     <footer>
         <script src="{{asset('/js/app.js')}}"></script>
+        <script type="text/javascript">
+            var auth = {!!json_encode(Auth::user())!!}
+        </script>
     </footer>
 </body>
 </html>

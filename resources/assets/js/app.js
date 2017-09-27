@@ -13,6 +13,7 @@ window.Marked = require('marked');
 
 Vue.component('workingticket', require('./components/WorkingTicket.vue'));
 Vue.component('working-time-confirm', require('./components/WorkingTimeConfirm.vue'));
+Vue.component('clean-up-select', require('./components/CleanUpSelect.vue'));
 const App = new Vue({
     el: '#app'
 });

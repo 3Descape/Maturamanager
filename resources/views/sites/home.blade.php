@@ -27,6 +27,8 @@
 
                 <h2>Aufräumen</h2>
 
+                <clean-up-select :clean-up-prop="{{$cleanUps}}"></clean-up-select>
+
             </div>
         </div>
     </div>

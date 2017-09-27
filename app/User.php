@@ -98,4 +98,9 @@ class User extends Authenticatable
 
         return in_array(true, $contains->toArray());
     }
+
+    public function cleanUp()
+    {
+        return $this->hasMany('App\CleanUpPerson');
+    }
 }
