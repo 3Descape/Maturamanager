@@ -22,6 +22,8 @@ Route::post('working_tickets/{working_ticket}/remove_user/', 'WorkingTicketContr
 Route::put('working_tickets/{working_ticket}/status/update', 'WorkingTicketController@update_status')->name('working_ticket_update_status');
 Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicketController@update_description')->name('working_tickets_update_description');
 
+Route::post('/cleanUps/add', 'CleanUpPersonController@store');
+
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');
 
 Route::get('/working_time/manage', 'ManageWorkingTimeController@index')->name('working_time_manage');
