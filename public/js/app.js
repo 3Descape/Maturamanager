@@ -48707,7 +48707,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.days, function(day, index) {
-        return _c("div", { staticClass: "col-md-2" }, [
+        return _c("div", { staticClass: " col-lg-2 col-md-6" }, [
           _c("div", { staticClass: "card m-1" }, [
             _c("div", { staticClass: "card-body" }, [
               _c("p", { staticClass: "text-center" }, [

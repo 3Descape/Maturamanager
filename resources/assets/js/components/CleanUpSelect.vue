@@ -5,7 +5,7 @@
                 <i class="fa fa-info-circle"></i> {{msg.message}}
             </div>
         </transition>
-        <div class="col-md-2" v-for="(day, index) in days">
+        <div class=" col-lg-2 col-md-6" v-for="(day, index) in days">
             <div class="card m-1">
                 <div class="card-body">
                     <p class="text-center">{{day.date | date}}</p>
