@@ -20,5 +20,10 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'can_manage_working_time',
             'label' => 'Arbeitszeit verwalten'
         ]);
+
+        Permission::create([
+            'name' => 'can_manage_tickets',
+            'label' => 'Verwltung der Tickets'
+        ]);
     }
 }

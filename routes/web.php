@@ -25,9 +25,19 @@ Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicket
 Route::post('/cleanUps/add', 'CleanUpPersonController@store');
 
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');
-
 Route::get('/working_time/manage', 'ManageWorkingTimeController@index')->name('working_time_manage');
 Route::put('/working_time/{workingTime}/toggleConfirm', 'ManageWorkingTimeController@update')->name('working_time_toggle');
+
+Route::get('/user', 'UserController@index')->name('user');
+Route::get('/{user}/berechtigungen', 'RolesUserController@edit')->name('roles_user');
+Route::post('/{user}/berechtigungen', 'RolesUserController@store')->name('store_role');
+Route::delete('/{user}/berechtigungen/{role}', 'RolesUserController@delete')->name('remove_role');
+
+Route::get('/berechtigungen', 'RolesController@index')->name('roles');
+Route::post('/berechtigungen/{role}', 'RolesController@store_permission')->name('roles_store_permission');
+Route::delete('/berechtigungen({role}/{permission})', 'RolesController@remove_permission')->name('roles_remove_permission');
+
+
 Route::get('/profile/{user}', 'UserController@show')->name('user_show');
 
 Route::auth();

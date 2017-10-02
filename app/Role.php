@@ -23,4 +23,9 @@ class Role extends Model
     {
         return $this->permissions()->save($permission);
     }
+
+    public function removePermission($permission_id)
+    {
+        return $this->permissions()->detach($permission_id);
+    }
 }

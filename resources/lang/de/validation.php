@@ -121,7 +121,9 @@ return [
         'password' => 'Passwort',
         'email' => 'E-Mail-Adresse',
         'name' => 'Name',
-        'description' => 'Beschreibung'
+        'description' => 'Beschreibung',
+        'working_time' => 'Arbeitszeit',
+        'working_ticket' => 'Ticket'
     ],
 
 ];

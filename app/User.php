@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->roles()->save($role);
     }
 
+    public function removeRole($id)
+    {
+        return $this->roles()->detach($id);
+    }
+
     /**
      * Checks if user is associated with a given role
      * @method hasRole
@@ -102,5 +107,10 @@ class User extends Authenticatable
     public function cleanUp()
     {
         return $this->hasMany('App\CleanUpPerson');
+    }
+
+    public function scopeGetBySlug($query, $slug)
+    {
+        return $query->where('slug', $slug);
     }
 }
