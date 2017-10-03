@@ -16,6 +16,11 @@ class RolesTableSeeder extends Seeder
             'label' => 'Administrator'
         ]);
 
+        Role::create([
+            'name' => 'working_time',
+            'label' => 'Arbeitszeiten'
+        ]);
+
         $role = Role::create([
             'name' => 'superadmin',
             'label' => 'Superadministrator'

@@ -12,18 +12,18 @@ class PermissionsTableSeeder extends Seeder
     public function run()
     {
         Permission::create([
-            'name' => 'can_assign_ticket',
-            'label' => 'Aufgaben verwalten'
+            'name' => 'admin',
+            'label' => 'Ist Administrator'
         ]);
 
         Permission::create([
-            'name' => 'can_manage_working_time',
-            'label' => 'Arbeitszeit verwalten'
+            'name' => 'working_time',
+            'label' => 'Arbeitszeiten verwalten und bestädigen'
         ]);
 
         Permission::create([
-            'name' => 'can_manage_tickets',
-            'label' => 'Verwltung der Tickets'
+            'name' => 'user',
+            'label' => 'Kann Nutzer verwalten'
         ]);
     }
 }

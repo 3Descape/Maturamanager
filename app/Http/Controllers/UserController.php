@@ -16,9 +16,11 @@ class UserController extends Controller
     }
     public function show(User $user)
     {
-        // TODO: add some profile view in here
-        dd($user);
-        return $user;
+        $user = $user->with('working_times', 'working_times.working_ticket')->first();
+        //return $user;
+        return view('sites.user.user_show', compact(
+            'user'
+        ));
     }
 
 }

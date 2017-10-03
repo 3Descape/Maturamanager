@@ -18,19 +18,19 @@
                 <a class="nav-link {{Request::route()->getName() == 'working_tickets' ? 'active' : ''}}" href="{{route('working_tickets')}}">Tickets</a>
             </li>
 
-            @can('can_manage_working_time', Auth::user())
+            @can('working_time', Auth::user())
                 <li class="nav-item">
                     <a class="nav-link {{Request::route()->getName() == 'working_time_manage' ? 'active' : ''}}" href="{{route('working_time_manage')}}">Arbeitszeitbestädigung</a>
                 </li>
             @endcan
 
-            @can('is_superadmin', Auth::user())
+            @can('user', Auth::user())
                 <li class="nav-item">
                     <a class="nav-link {{Request::route()->getName() == 'user' ? 'active' : ''}}" href="{{route('user')}}">Nutzer</a>
                 </li>
             @endcan
 
-            @can('is_superadmin', Auth::user())
+            @can('superadmin', Auth::user())
                 <li class="nav-item">
                     <a class="nav-link {{Request::route()->getName() == 'roles' ? 'active' : ''}}" href="{{route('roles')}}">Berechtigungen</a>
                 </li>

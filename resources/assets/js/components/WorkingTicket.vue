@@ -9,8 +9,9 @@
                                 <i :class="{'fa fa-check': ticket.completed, 'fa fa-cog': !ticket.completed}"></i>
                             </button>
                         </form>
-                        <div v-else class="btn btn-success">
-                            <i class="fa fa-check"></i>
+
+                        <div v-else :class="{'btn btn-success': ticket.completed, 'btn btn-danger': !ticket.completed}">
+                            <i :class="{'fa fa-check': ticket.completed, 'fa fa-cog': !ticket.completed}"></i>
                         </div>
                     </div>
                 </h4>

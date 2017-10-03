@@ -20,7 +20,15 @@ class WorkingTicketController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
+    {
+        $working_tickets = WorkingTicket::with(['users', 'working_times', 'author'])->paginate(10);
+        return view('sites.working_tickets.working_tickets_index', compact([
+            'working_tickets'
+        ]));
+    }
+    public function show()
     {
         $working_tickets = Auth::user()->working_tickets()->with('users', 'author', 'working_times')->get();
         $users = User::all();
@@ -51,8 +59,7 @@ class WorkingTicketController extends Controller
     {
         $data = $this->validate($request, [
             'name' => 'required',
-            'markup' => 'required',
-            'html' => 'required'
+            'description' => 'required'
         ]);
 
         $slugs = WorkingTicket::pluck('slug')->toArray();
@@ -62,50 +69,17 @@ class WorkingTicketController extends Controller
             'slug' => $this->generateUniqueSlug($request['name'], $slugs),
             'user_id' => Auth::user()->id,
             'markup' => $data['description'],
-            'html' => $data['html'],
+            'html' => $data['description']
         ])->users()->save(Auth::user());
 
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\WorkinTicket  $workinTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function show(WorkingTicket $workingTicket)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\WorkinTicket  $workinTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(WorkingTicket $workingTicket)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WorkinTicket  $workinTicket
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, WorkingTicket $workingTicket)
-    {
-        //
-    }
-
     public function update_description(Request $request, WorkingTicket $workingTicket)
     {
         $workingTicket->update([
-            'description' => $request->description
+            'markup' => $request->markup,
+            'html' => $request->html
         ]);
         return response()->json(['status' => 'Beschreibung wurde bearbeitet', 'type' => 'success'], 200);
     }

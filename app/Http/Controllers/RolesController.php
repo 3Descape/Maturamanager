@@ -23,6 +23,22 @@ class RolesController extends Controller
         ]));
     }
 
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'name' => 'required|string|unique:roles,name',
+            'label' => 'required|string'
+        ]);
+
+        Role::create($data);
+        return back();
+    }
+
+    public function delete(Role $role)
+    {
+        $role->delete();
+        return back();
+    }
     public function store_permission(Request $request, Role $role)
     {
         $role->addPermission(Permission::find($request->permission));

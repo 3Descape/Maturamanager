@@ -26,23 +26,23 @@ class RolesPolicy
         }
     }
 
-    public function is_admin(User $user)
+    public function admin(User $user)
     {
         return $user->hasRole('admin');
     }
 
-    public function is_superadmin(User $user)
+    public function superadmin(User $user)
     {
         return $user->hasRole('superadmin');
     }
 
-    public function can_manage_working_time(User $user)
+    public function working_time(User $user)
     {
-        return $user->hasPermission('can_confirm_working_time');
+        return $user->hasPermission('working_time');
     }
 
-    public function can_manage_tickets(User $user)
+    public function user(User $user)
     {
-        return $user->hasPermission('can_manage_tickets');
+        return $user->hasPermission('user');
     }
 }

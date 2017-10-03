@@ -25,6 +25,6 @@ class WorkingTime extends Model
 
     public function scopeMostRecent($query)
     {
-        return $query->take(10)->orderBy('created_at', 'desc');
+        return $query->take(8)->orderBy('created_at', 'desc');
     }
 }

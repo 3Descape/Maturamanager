@@ -22,7 +22,7 @@ class WorkingTimeController extends Controller
     {
         $working_tickets = Auth::user()->working_tickets()->get();
 
-        $working_times = Auth::user()->working_times()->with('working_ticket')->get();
+        $working_times = Auth::user()->working_times()->with('working_ticket')->orderBy('created_at', 'desc')->paginate(5);
 
         return view('sites.working_times.working_times', compact([
             'working_tickets',

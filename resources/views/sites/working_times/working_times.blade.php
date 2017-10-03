@@ -1,4 +1,7 @@
 @extends('master')
+@section('title')
+    Arbeitszeiten
+@endsection
 @section('content')
     @include('layouts.menu')
     <div class="container-fluid">
@@ -116,6 +119,12 @@
                             </li>
                         @endforeach
                     </ul>
+
+                    @if($working_times->count())
+                        {{ $working_times->links('layouts.paginator')}}
+                    @else
+                        <p class="mt-4 text-center">Du hast noch keine Arbeitszeiten eingetragen.</p>
+                    @endif
                 </div>
             </div>
         </div>

@@ -26,6 +26,8 @@
                         </div>
                         {{ csrf_field() }}
                     </form>
+
+                    @include('layouts.errors')
                 @else
                     <p class="text-muted">
                         Hat Bereits alle Berechtigungen

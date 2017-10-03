@@ -1,10 +1,19 @@
 @extends('master')
+@section('title')
+    Meine Tickets
+@endsection
 @section('content')
     @include('layouts.menu')
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-sm-11 mx-auto row">
-                <div class="col-md-12 mb-5">
+                <div class="col-md-12 d-flex">
+                    <h2>Für mich relevante Tickets:</h2>
+                    <a href="{{route('working_tickets_overview')}}" class="btn btn-primary ml-auto">
+                        <i class="fa fa-arrow-right"></i> Alle ansehen
+                    </a>
+                </div>
+                <div class="col-md-12 mt-4 mb-4">
                     <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#add-working_ticket" aria-expanded="{{$errors->any() ? 'true' : 'false'}}" aria-controls="add-working_ticket">
                         Neues Ticket <i class="fa fa-caret-down"></i>
                     </button>
@@ -13,7 +22,7 @@
                     <form action="{{route('working_tickets_store')}}" method="post" class="mb-5">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" name="name" id="name" value="{{old('name') ? old('name') : ''}}" class="form-control" required>
+                            <input type="text" name="name" id="name" value="{{old('name')}}" class="form-control" required>
 
                             @if($errors->has('name'))
                                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
@@ -30,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <label for="description">Beschreibung</label>
-                            <input type="text" name="description" id="description" value="{{old('description') ? old('description') : ''}}" class="form-control">
+                            <input type="text" name="description" id="description" value="{{old('description')}}" class="form-control">
 
                             @if($errors->has('description'))
                                 <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">

@@ -1,4 +1,7 @@
 @extends('master')
+@section('title')
+    Benutzer
+@endsection
 @section('content')
     @include('layouts.menu')
     <div class="container-fluid">

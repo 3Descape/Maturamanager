@@ -16,7 +16,7 @@ class RolesUserController extends Controller
     public function edit($user_slug)
     {
         $user = User::getBySlug($user_slug)->with('roles')->first();
-        $roles = Role::all()->diff($user->roles);
+        $roles = Role::where('name', "!=", "superadmin")->get()->diff($user->roles);
         return view('sites.user_roles.user_edit_roles', compact([
             'user',
             'roles'
