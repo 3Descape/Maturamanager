@@ -60,7 +60,7 @@
 
                     <ul class="list-group my-2">
                         <li v-for="user in ticket.users" class="list-group-item d-flex">
-                            <a :href="'/profile/'+ user.slug">{{user.name}}</a>
+                            <a :href="'/profil/'+ user.slug">{{user.name}}</a>
 
                             <form v-if="isAuthor(authUser)" class="ml-auto"  @submit.prevent="removeUser(user)">
                                 <button type="submit" class="btn btn-danger" :disabled="isAuthor(user)">
@@ -76,7 +76,7 @@
             </div>
 
             <div class="card-footer text-muted">
-              <a :href="'/profile/'+ticket.author.slug">{{ticket.author.name}}</a>
+              <a :href="'/profil/'+ticket.author.slug">{{ticket.author.name}}</a>
               <!-- {{$ticket->created_at->diffForHumans()}} -->
             </div>
         </div>

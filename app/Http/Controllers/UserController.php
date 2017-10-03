@@ -23,4 +23,9 @@ class UserController extends Controller
         ));
     }
 
+    public function settings()
+    {
+        return "settings";
+    }
+
 }

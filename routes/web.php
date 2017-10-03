@@ -37,10 +37,13 @@ Route::post('/berechtigungen/{role}', 'RolesController@store_permission')->name(
 Route::delete('/berechtigungen({role}/{permission})', 'RolesController@remove_permission')->name('roles_remove_permission');
 
 Route::get('/user', 'UserController@index')->name('user');
+Route::get('/{user}/settings', 'UserController@settings')->name('user_settings');
+
 Route::get('/{user}/berechtigungen', 'RolesUserController@edit')->name('roles_user');
 Route::post('/{user}/berechtigungen', 'RolesUserController@store')->name('store_role');
 Route::delete('/{user}/berechtigungen/{role}', 'RolesUserController@delete')->name('remove_role');
 
-Route::get('/profile/{user}', 'UserController@show')->name('user_show');
+
+Route::get('/profil/{user}', 'UserController@show')->name('user_show');
 
 Route::auth();

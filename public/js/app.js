@@ -63658,7 +63658,7 @@ var render = function() {
                 { staticClass: "list-group my-2" },
                 _vm._l(_vm.ticket.users, function(user) {
                   return _c("li", { staticClass: "list-group-item d-flex" }, [
-                    _c("a", { attrs: { href: "/profile/" + user.slug } }, [
+                    _c("a", { attrs: { href: "/profil/" + user.slug } }, [
                       _vm._v(_vm._s(user.name))
                     ]),
                     _vm._v(" "),
@@ -63707,7 +63707,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("div", { staticClass: "card-footer text-muted" }, [
-        _c("a", { attrs: { href: "/profile/" + _vm.ticket.author.slug } }, [
+        _c("a", { attrs: { href: "/profil/" + _vm.ticket.author.slug } }, [
           _vm._v(_vm._s(_vm.ticket.author.name))
         ])
       ])

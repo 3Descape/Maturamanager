@@ -41,7 +41,15 @@
 
         <ul class="navbar-nav">
             <li class="nav-item d-none d-lg-block">
-                <p class="nav-link m-0 mr-2 p-0">{{Auth::user()->name}}</p>
+                <div class="dropdown show">
+                    <a class="btn btn-secondary btn-sm dropdown-toggle mr-2" href="#" role="button" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{Auth::user()->name}}
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="profile">
+                        <a class="dropdown-item" href="{{route('user_settings', Auth::user()->slug)}}">Passwort ändern</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
                 <form method="post" action="{{route('logout')}}">

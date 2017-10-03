@@ -35,7 +35,7 @@
                                     <ul class="list-group my-2">
                                         @foreach ($ticket->users as $user)
                                             <li class="list-group-item d-flex">
-                                                <a href="/profile/{{$user->slug}}">{{$user->name}}</a>
+                                                <a href="{{route('user_show', $ticket->author->slug)}}">{{$user->name}}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="card-footer text-muted">
-                                Autor: <a href="/profile/{{$ticket->author->slug}}">{{$ticket->author->name}}</a>
+                                Autor: <a href="{{route('user_show', $ticket->author->slug)}}">{{$ticket->author->name}}</a>
                                 <p>Zuletzt bearbeitet {{$ticket->updated_at->diffForHumans()}}</p>
                             </div>
                         </div>
