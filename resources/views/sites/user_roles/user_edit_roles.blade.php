@@ -10,7 +10,7 @@
                 <h1>Bearbeiten Sie die Berechtigungen für {{$user->name}}.</h1>
 
                 @if($roles->count())
-                    <form action="{{route('store_role',[$user->slug])}}" method="post">
+                    <form action="{{route('assign_role',[$user->slug])}}" method="post">
                         <div class="form-group">
                             <select class="form-control" name="role">
                                 @foreach ($roles as $role)

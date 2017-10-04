@@ -36,26 +36,35 @@
                 </li>
             @endcan
 
+
+            <li class="nav-item d-lg-none">
+                <a class="nav-link" href="{{route('user_settings', Auth::user()->slug)}}">Passwort ändern</a>
+            </li>
+            <li class="nav-item d-lg-none">
+                <form method="post" action="{{route('logout')}}" class="nav-link">
+                    {{ csrf_field() }}
+                    <button class="btn btn-primary btn-sm form-control" type="submit"><i class="fa fa-sign-out"></i> Abmelden</button>
+                </form>
+            </li>
+
         </ul>
 
 
         <ul class="navbar-nav">
             <li class="nav-item d-none d-lg-block">
                 <div class="dropdown show">
-                    <a class="btn btn-secondary btn-sm dropdown-toggle mr-2" href="#" role="button" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="btn btn-info btn-sm dropdown-toggle mr-2" href="#" role="button" id="profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{Auth::user()->name}}
                     </a>
 
                     <div class="dropdown-menu" aria-labelledby="profile">
                         <a class="dropdown-item" href="{{route('user_settings', Auth::user()->slug)}}">Passwort ändern</a>
+                        <form method="post" action="{{route('logout')}}" class="dropdown-item">
+                            {{ csrf_field() }}
+                            <button class="btn btn-primary btn-sm form-control" type="submit"><i class="fa fa-sign-out"></i> Abmelden</button>
+                        </form>
                     </div>
                 </div>
-            </li>
-            <li class="nav-item">
-                <form method="post" action="{{route('logout')}}">
-                    {{ csrf_field() }}
-                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-sign-out"></i> Abmelden</button>
-                </form>
             </li>
         </ul>
 </nav>

@@ -22,10 +22,13 @@
                                     <a class="mr-2 btn btn-warning" href="{{route('roles_user', $user->slug)}}">
                                         <i class="fa fa-edit"></i>
                                     </a>
-                                    <button class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-
+                                    {{-- <form action="{{route('delete_user', $user->slug)}}" method="post">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        {{ csrf_field() }}
+                                        {{method_field('DELETE')}}
+                                    </form> --}}
                                 </td>
                             </tr>
                         @endforeach
