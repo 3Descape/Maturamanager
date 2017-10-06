@@ -1,9 +1,8 @@
-@extends('master')
+@extends('auth.master')
 
 @section('content')
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
+    <div class="row" style="height: 100vh">
+        <div class="col-md-4 col-sm-11 mx-auto my-auto">
             <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
 
@@ -56,5 +55,4 @@
             </form>
         </div>
     </div>
-</div>
 @endsection
