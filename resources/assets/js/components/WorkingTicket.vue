@@ -160,9 +160,13 @@
                     let id = ids.indexOf(vue.selectedPerson);
                     vue.ticket.users.push(vue.addableUsers[id])
                     vue.addableUsers.splice(id, 1);
-                    vue.selectedPerson = vue.addableUsers[0].id
+                    if(vue.addableUsers.length){
+                        vue.selectedPerson = vue.addableUsers[0].id;
+                    }else {
+                        vue.selectedPerson ="";
+                    }
 
-                    vue.msg.showMessage(response.data.status)
+                    vue.msg.showMessage(response.data.status, "success")
                 })
                 .catch(function (errors) {
                     vue.msg.showMessage("Fehler", "danger");

@@ -1,34 +1,37 @@
 <template lang="html">
     <div class="col-md-12 mt-4">
         <ul class="list-group">
-            <li class="list-group-item p-1 d-flex">
-                <div class="col-lg-2 col-md-2"><p class="m-0">Person</p></div>
-                <div class="col-lg-2 col-md-2"><p class="m-0">Zeit <i class="text-muted">in Minuten</i></p></div>
-                <div class="col-lg-5 col-md-6"><p class="m-0">Beschreibung</p></div>
-                <div class="col-lg-2 d-none d-lg-block"><p class="m-0">Ticket</p></div>
-                <div class="col-lg-1 col-md-2 d-flex"><p class="ml-auto m-0">Bestätigen</p></div>
-
+            <li class="list-group-item p-1">
+                <div class="row">
+                    <div class="col-lg-2 col-sm-4 col-12 order-1"><p class="m-0 ml-3">Person</p></div>
+                    <div class="col-lg-2 col-sm-4 col-12 order-2"><p class="m-0">Zeit <i class="text-muted">in Minuten</i></p></div>
+                    <div class="col-lg-5 col-sm-12 col-12 order-4 order-lg-3"><p class="ml-3 ml-lg-0">Beschreibung</p></div>
+                    <div class="col-lg-2 col-sm-4 col-12 order-3 order-lg-4"><p class="m-0">Ticket</p></div>
+                    <div class="col-lg-1 col-sm-4 col-12 d-lg-flex d-none order-5"><p class="ml-auto m-0 mr-3">Bestätigen</p></div>
+                </div>
             </li>
-                <li class="list-group-item p-1 d-flex" v-for="work in workingTimes">
-                    <div class="col-lg-2 col-md-2">
-                        {{work.user.name}}
+            <li class="list-group-item p-1" v-for="work in workingTimes">
+                <div class="row">
+                    <div class="col-lg-2 col-sm-4 col-12 order-1">
+                        <span class="m-0 ml-sm-3">{{work.user.name}}</span>
                     </div>
-                    <div class="col-lg-2 col-md-2">
-                        {{work.working_time}}
+                    <div class="col-lg-2 col-sm-4 col-12 order-2">
+                        {{work.working_time}} <span class="text-muted">min.</span>
                     </div>
-                    <div class="col-lg-5 col-md-6">
-                        {{work.description != null ? work.description : '-'}}
+                    <div class="col-lg-5 col-sm-10 col-12 order-4 order-lg-3 ">
+                        <span class="m-0 ml-sm-3">{{work.description != null ? work.description : '-'}}</span>
                     </div>
-                    <div class="col-lg-2 col-md-3 d-none d-lg-block">
+                    <div class="col-lg-2 col-sm-4 col-12 order-3 order-lg-4">
                         {{work.working_ticket != null ? work.working_ticket.name : '-'}}
                     </div>
-                    <div class="col-lg-1 d-flex col-md-2">
+                    <div class="col-lg-1 d-lg-flex col-sm-2 col-12 order-5">
                         <form class="align-self-start ml-auto" action="index.html" method="post" @submit.prevent="update(work.id)">
                             <button v-if="!work.working" class="fa btn" v-bind:class="[work.confirmed ? 'fa-check btn-success': 'fa-times btn-danger']" type="submit"></button>
                             <i v-if="work.working" class="btn btn-primary"><i class="fa-spinner fa fa-pulse"></i></i>
                         </form>
                     </div>
-                </li>
+                </div>
+            </li>
         </ul>
     </div>
 </template>

@@ -63334,9 +63334,13 @@ var Message = function () {
                 var id = ids.indexOf(vue.selectedPerson);
                 vue.ticket.users.push(vue.addableUsers[id]);
                 vue.addableUsers.splice(id, 1);
-                vue.selectedPerson = vue.addableUsers[0].id;
+                if (vue.addableUsers.length) {
+                    vue.selectedPerson = vue.addableUsers[0].id;
+                } else {
+                    vue.selectedPerson = "";
+                }
 
-                vue.msg.showMessage(response.data.status);
+                vue.msg.showMessage(response.data.status, "success");
             }).catch(function (errors) {
                 vue.msg.showMessage("Fehler", "danger");
             });
@@ -63822,6 +63826,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['workingTimesProp'],
@@ -63876,72 +63883,87 @@ var render = function() {
         _vm._m(0),
         _vm._v(" "),
         _vm._l(_vm.workingTimes, function(work) {
-          return _c("li", { staticClass: "list-group-item p-1 d-flex" }, [
-            _c("div", { staticClass: "col-lg-2 col-md-2" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(work.user.name) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-2 col-md-2" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(work.working_time) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-5 col-md-6" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(work.description != null ? work.description : "-") +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-2 col-md-3 d-none d-lg-block" }, [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(
-                    work.working_ticket != null ? work.working_ticket.name : "-"
-                  ) +
-                  "\n                "
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-1 d-flex col-md-2" }, [
+          return _c("li", { staticClass: "list-group-item p-1" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
+                _c("span", { staticClass: "m-0 ml-sm-3" }, [
+                  _vm._v(_vm._s(work.user.name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
+                _vm._v(
+                  "\n                    " + _vm._s(work.working_time) + " "
+                ),
+                _c("span", { staticClass: "text-muted" }, [_vm._v("min.")])
+              ]),
+              _vm._v(" "),
               _c(
-                "form",
+                "div",
                 {
-                  staticClass: "align-self-start ml-auto",
-                  attrs: { action: "index.html", method: "post" },
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      _vm.update(work.id)
-                    }
-                  }
+                  staticClass: "col-lg-5 col-sm-10 col-12 order-4 order-lg-3 "
                 },
                 [
-                  !work.working
-                    ? _c("button", {
-                        staticClass: "fa btn",
-                        class: [
-                          work.confirmed
-                            ? "fa-check btn-success"
-                            : "fa-times btn-danger"
-                        ],
-                        attrs: { type: "submit" }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  work.working
-                    ? _c("i", { staticClass: "btn btn-primary" }, [
-                        _c("i", { staticClass: "fa-spinner fa fa-pulse" })
-                      ])
-                    : _vm._e()
+                  _c("span", { staticClass: "m-0 ml-sm-3" }, [
+                    _vm._v(
+                      _vm._s(work.description != null ? work.description : "-")
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(
+                        work.working_ticket != null
+                          ? work.working_ticket.name
+                          : "-"
+                      ) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-lg-1 d-lg-flex col-sm-2 col-12 order-5" },
+                [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "align-self-start ml-auto",
+                      attrs: { action: "index.html", method: "post" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.update(work.id)
+                        }
+                      }
+                    },
+                    [
+                      !work.working
+                        ? _c("button", {
+                            staticClass: "fa btn",
+                            class: [
+                              work.confirmed
+                                ? "fa-check btn-success"
+                                : "fa-times btn-danger"
+                            ],
+                            attrs: { type: "submit" }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      work.working
+                        ? _c("i", { staticClass: "btn btn-primary" }, [
+                            _c("i", { staticClass: "fa-spinner fa fa-pulse" })
+                          ])
+                        : _vm._e()
+                    ]
+                  )
                 ]
               )
             ])
@@ -63957,28 +63979,36 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item p-1 d-flex" }, [
-      _c("div", { staticClass: "col-lg-2 col-md-2" }, [
-        _c("p", { staticClass: "m-0" }, [_vm._v("Person")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-2 col-md-2" }, [
-        _c("p", { staticClass: "m-0" }, [
-          _vm._v("Zeit "),
-          _c("i", { staticClass: "text-muted" }, [_vm._v("in Minuten")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-5 col-md-6" }, [
-        _c("p", { staticClass: "m-0" }, [_vm._v("Beschreibung")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-2 d-none d-lg-block" }, [
-        _c("p", { staticClass: "m-0" }, [_vm._v("Ticket")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-lg-1 col-md-2 d-flex" }, [
-        _c("p", { staticClass: "ml-auto m-0" }, [_vm._v("Bestätigen")])
+    return _c("li", { staticClass: "list-group-item p-1" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
+          _c("p", { staticClass: "m-0 ml-3" }, [_vm._v("Person")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
+          _c("p", { staticClass: "m-0" }, [
+            _vm._v("Zeit "),
+            _c("i", { staticClass: "text-muted" }, [_vm._v("in Minuten")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-5 col-sm-12 col-12 order-4 order-lg-3" },
+          [_c("p", { staticClass: "ml-3 ml-lg-0" }, [_vm._v("Beschreibung")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
+          [_c("p", { staticClass: "m-0" }, [_vm._v("Ticket")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-1 col-sm-4 col-12 d-lg-flex d-none order-5" },
+          [_c("p", { staticClass: "ml-auto m-0 mr-3" }, [_vm._v("Bestätigen")])]
+        )
       ])
     ])
   }

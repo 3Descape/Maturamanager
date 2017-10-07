@@ -7,11 +7,13 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10 col-sm-11 mx-auto row">
-                <div class="col-md-12 d-flex">
-                    <h2>Für mich relevante Tickets:</h2>
-                    <a href="{{route('working_tickets_overview')}}" class="btn btn-primary ml-auto">
-                        <i class="fa fa-arrow-right"></i> Alle ansehen
-                    </a>
+                <div class="col-md-12 row d-flex">
+                    <h2 class="col-md-10 order-2 order-md-1">Für mich relevante Tickets:</h2>
+                    <div class="col-md-2 order-1 order-md-2 mb-2 mb-md-0">
+                        <a href="{{route('working_tickets_overview')}}" class="btn btn-primary ml-auto align-self-start">
+                            <i class="fa fa-arrow-right"></i> Alle ansehen
+                        </a>
+                    </div>
                 </div>
                 <div class="col-md-12 mt-4 mb-4">
                     <button class="btn btn-success" type="button" data-toggle="collapse" data-target="#add-working_ticket" aria-expanded="{{$errors->any() ? 'true' : 'false'}}" aria-controls="add-working_ticket">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row" style="height: 100vh">
-        <div class="col-md-4 col-sm-11 mx-auto my-auto">
+        <div class="col-md-4 col-11 mx-auto my-auto">
             <div class="card">
                 <div class="card-header">Passwort zurücksetzen</div>
 
