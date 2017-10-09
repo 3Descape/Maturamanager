@@ -11,21 +11,25 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::create([
+        $role = Role::create([
+            'name' => 'superadmin',
+            'label' => 'Superadministrator'
+        ]);
+
+
+        App\User::first()->assignRole($role);
+
+        $admin = Role::create([
             'name' => 'admin',
             'label' => 'Administrator'
         ]);
+
+        $admin->addPermission(App\Permission::first());
 
         Role::create([
             'name' => 'working_time',
             'label' => 'Arbeitszeiten'
         ]);
 
-        $role = Role::create([
-            'name' => 'superadmin',
-            'label' => 'Superadministrator'
-        ]);
-
-        App\User::first()->assignRole($role);
     }
 }

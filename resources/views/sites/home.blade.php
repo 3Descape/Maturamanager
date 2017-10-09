@@ -18,7 +18,9 @@
                     <tbody>
                         @foreach ($mostRecentWorkingTimes as $workingTime)
                             <tr>
-                                <td scope="row">{{$workingTime->user->name}}</td>
+                                <td scope="row">
+                                    <a href="{{route('user_show', $workingTime->user->slug)}}">{{$workingTime->user->name}}</a>
+                                </td>
                                 <td>{{$workingTime->working_time}}</td>
                                 <td>{{$workingTime->description}}</td>
                                 <td>{{$workingTime->date->format('d.m.Y')}}</td>

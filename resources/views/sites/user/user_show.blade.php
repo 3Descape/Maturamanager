@@ -18,6 +18,7 @@
                             <th>Zeit</th>
                             <th>Beschreibung</th>
                             <th>Ticket</th>
+                            <th>Datum</th>
                         </tr>
                     </thead>
                     @foreach ($user->working_times->take(20) as $job)
@@ -34,6 +35,9 @@
                                 @else
                                     -
                                 @endif
+                            </td>
+                            <td>
+                                {{$job->date->format('d.m.Y')}}
                             </td>
                         </tr>
                     @endforeach
