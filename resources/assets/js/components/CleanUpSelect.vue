@@ -90,7 +90,7 @@ export default {
         let dates = this.cleanUps.map(function(item){
             return moment(item.date, 'YYYY-MM-DD').format();
         });
-        for(let i=1; i<7; i++){
+        for(let i=0; i<6; i++){
             let day = moment().add(i, "days")
             day.hours(0);
             day.minutes(0);

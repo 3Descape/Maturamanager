@@ -22,7 +22,9 @@ Route::post('working_tickets/{working_ticket}/remove_user/', 'WorkingTicketContr
 Route::put('working_tickets/{working_ticket}/status/update', 'WorkingTicketController@update_status')->name('working_ticket_update_status');
 Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicketController@update_description')->name('working_tickets_update_description');
 Route::get('/tickets/übersicht', 'WorkingTicketController@index')->name('working_tickets_overview');
+Route::get('/tickets/manage', 'WorkingTicketManageController@index')->name('ticket_manage');
 
+Route::get('/aufräumdienst', 'CleanUpPersonController@index')->name('cleanup_person');
 Route::post('/cleanUps/add', 'CleanUpPersonController@store');
 
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');

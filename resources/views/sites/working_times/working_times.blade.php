@@ -105,6 +105,7 @@
                 </div>
 
                 <div class="col-md-12 mt-4">
+                    <p class="text-muted">Gesamt {{round($working_times->sum('working_time')/60 ,2)}} Stunden</p>
                     <ul class="list-group">
                         <li class="list-group-item p-1 d-flex">
                             <div class="col-lg-2 col-md-2"><p class="m-0">Zeit</p></div>

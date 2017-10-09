@@ -14,9 +14,9 @@ class UserController extends Controller
             "users"
         ]));
     }
-    public function show(User $user)
+    public function show($user_slug)
     {
-        $user = $user->with('working_times', 'working_times.working_ticket')->first();
+        $user = User::getBySlug($user_slug)->with('working_times', 'working_times.working_ticket')->first();
         //return $user;
         return view('sites.user.user_show', compact(
             'user'

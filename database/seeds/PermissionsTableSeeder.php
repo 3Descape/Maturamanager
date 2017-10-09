@@ -25,5 +25,10 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'user',
             'label' => 'Kann Nutzer verwalten'
         ]);
+
+        Permission::create([
+            'name' = 'cleanupPerson',
+            'label' => 'Aufräumdienst'
+        ]);
     }
 }

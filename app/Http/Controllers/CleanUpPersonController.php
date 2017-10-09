@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CleanUpPerson;
+use Carbon\Carbon;
 
 class CleanUpPersonController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function index()
+    {
+        $this->authorize('cleanup_person', auth()->user());
+        $duty_past = CleanUpPerson::where('date', '<=', Carbon::now())->with('user')->get()->take(10);
+        return view('sites.cleanUpPeople.cleanUpPeople', compact([
+            'duty_past'
+        ]));
     }
 
     public function store(Request $request)

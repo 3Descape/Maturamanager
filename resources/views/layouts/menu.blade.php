@@ -20,7 +20,7 @@
 
             @can('working_time', Auth::user())
                 <li class="nav-item">
-                    <a class="nav-link {{Request::route()->getName() == 'working_time_manage' ? 'active' : ''}}" href="{{route('working_time_manage')}}">Arbeitszeitbestädigung</a>
+                    <a class="nav-link {{Request::route()->getName() == 'working_time_manage' ? 'active' : ''}}" href="{{route('working_time_manage')}}">Arbeitszeitbestätigung</a>
                 </li>
             @endcan
 
@@ -35,6 +35,18 @@
                     <a class="nav-link {{Request::route()->getName() == 'roles' ? 'active' : ''}}" href="{{route('roles')}}">Berechtigungen</a>
                 </li>
             @endcan
+
+            @can('admin', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link {{Request::route()->getName() == 'cleanup_person' ? 'active' : ''}}" href="{{route('cleanup_person')}}">Aufräumdienst</a>
+                </li>
+            @endcan
+
+            {{-- @can('admin', Auth::user())
+                <li class="nav-item">
+                    <a class="nav-link {{Request::route()->getName() == 'ticket_manage' ? 'active' : ''}}" href="{{route('ticket_manage')}}">Tickets Verwalten</a>
+                </li>
+            @endcan --}}
 
 
             <li class="nav-item d-lg-none">

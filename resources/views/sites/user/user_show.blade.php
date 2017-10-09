@@ -9,7 +9,7 @@
             <div class="col-md-10 col-sm-11 mx-auto">
                 <h1>{{$user->name}}</h1>
 
-                <p>Hat gesamt {{$user->working_times->sum('working_time')/60}} Stunden gearbeitet.</p>
+                <p>Hat gesamt {{round($user->working_times->sum('working_time')/60, 2)}} Stunden gearbeitet.</p>
 
                 <h3 class="mt-4">Zuletzt geleistete Arbeitszeiten</h3>
                 <table class="table mt-2">
