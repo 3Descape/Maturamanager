@@ -27,7 +27,7 @@ class PermissionsTableSeeder extends Seeder
         ]);
 
         Permission::create([
-            'name' = 'cleanupPerson',
+            'name' => 'cleanupPerson',
             'label' => 'Aufräumdienst'
         ]);
     }

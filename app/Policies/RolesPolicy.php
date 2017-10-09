@@ -41,7 +41,7 @@ class RolesPolicy
         return $user->hasPermission('working_time');
     }
 
-    public function cleanup_person()
+    public function cleanup_person(User $user)
     {
         return $user->hasPermission('cleanupPerson') || $user->hasPermission('admin');
     }

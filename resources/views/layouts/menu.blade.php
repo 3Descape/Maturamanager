@@ -36,7 +36,7 @@
                 </li>
             @endcan
 
-            @can('admin', Auth::user())
+            @can('cleanup_person', Auth::user())
                 <li class="nav-item">
                     <a class="nav-link {{Request::route()->getName() == 'cleanup_person' ? 'active' : ''}}" href="{{route('cleanup_person')}}">Aufräumdienst</a>
                 </li>
