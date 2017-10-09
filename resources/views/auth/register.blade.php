@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password-confirm">Passwort bestädigen</label>
+                    <label for="password-confirm">Passwort bestätigen</label>
 
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 </div>
