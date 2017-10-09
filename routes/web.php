@@ -44,7 +44,7 @@ Route::put('/{user}/settings', 'UserController@update')->name('update_settings')
 
 
 Route::get('/{user}/berechtigungen', 'RolesUserController@edit')->name('roles_user');
-Route::post('/{user/berechtigungen', 'RolesUserController@store')->name('assign_role');
+Route::post('/{user}/berechtigungen', 'RolesUserController@store')->name('assign_role');
 Route::delete('/{user}/berechtigungen/{role}', 'RolesUserController@delete')->name('remove_role');
 
 

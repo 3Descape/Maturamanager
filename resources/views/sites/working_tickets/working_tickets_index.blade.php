@@ -27,19 +27,21 @@
                                 <div class="mb-2">
                                     {!!$ticket->html!!}
                                 </div>
-                                <a class="btn btn-primary" data-toggle="collapse" href="#users{{$ticket->id}}" aria-expanded="false" aria-controls="users">
-                                  Personen <i class="fa fa-caret-down"></i>
-                                </a>
+                                @if($ticket->users->count())
+                                    <a class="btn btn-primary" data-toggle="collapse" href="#users{{$ticket->id}}" aria-expanded="false" aria-controls="users">
+                                      Personen <i class="fa fa-caret-down"></i>
+                                    </a>
 
-                                <div class="collapse" id="users{{$ticket->id}}">
-                                    <ul class="list-group my-2">
-                                        @foreach ($ticket->users as $user)
-                                            <li class="list-group-item d-flex">
-                                                <a href="{{route('user_show', $ticket->author->slug)}}">{{$user->name}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                    <div class="collapse" id="users{{$ticket->id}}">
+                                        <ul class="list-group my-2">
+                                            @foreach ($ticket->users as $user)
+                                                <li class="list-group-item d-flex">
+                                                    <a href="{{route('user_show', $ticket->author->slug)}}">{{$user->name}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                                 <p class="mt-1">
                                     Arbeitszeit gesamt: {{round($ticket->working_times->sum('working_time')/60, 2)}}
                                 </p>
