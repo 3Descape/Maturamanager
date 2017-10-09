@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class WorkingTime extends Model
 {
-    protected $fillable = ['description', 'working_time', 'user_id', 'working_ticket_id', 'confirmed', 'image_path'];
+    protected $fillable = ['description', 'working_time', 'date', 'user_id', 'working_ticket_id', 'confirmed', 'image_path'];
+    protected $dates = ['date', 'created_at', 'updated_at'];
 
     public function user()
     {

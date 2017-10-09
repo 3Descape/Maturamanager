@@ -12,6 +12,7 @@
                             <th>Benutzer</th>
                             <th>Zeit</th>
                             <th>Beschreibung</th>
+                            <th>Datum</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,6 +21,7 @@
                                 <td scope="row">{{$workingTime->user->name}}</td>
                                 <td>{{$workingTime->working_time}}</td>
                                 <td>{{$workingTime->description}}</td>
+                                <td>{{$workingTime->date->format('d.m.Y')}}</td>
                             </tr>
                         @endforeach
                     </tbody>

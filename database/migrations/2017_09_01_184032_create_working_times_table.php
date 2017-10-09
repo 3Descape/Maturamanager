@@ -17,6 +17,7 @@ class CreateWorkingTimesTable extends Migration
             $table->increments('id');
             $table->string('description')->nullable();
             $table->integer('working_time');
+            $table->date('date');
             $table->integer('user_id')->unsigned();
             $table->integer('working_ticket_id')->unsigned()->nullable();
             $table->boolean('confirmed')->default(0);

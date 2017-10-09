@@ -35,8 +35,27 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="description">Beschreibung</label>
+                            <label for="date">Datum</label>
 
+                            <select name="date" id="date" class="custom-select form-control">
+                                <option value="0" {{old('date') ? old('date') === "" ? "selected" : '': ''}}>Heute</option>
+                                <option value="-1" {{old('date') ? old('date') === "" ? "selected" : '': ''}}>Gestern</option>
+                                <option value="-2" {{old('date') ? old('date') === "" ? "selected" : '': ''}}>Vorgestern</option>
+                            </select>
+
+                            @if($errors->has('date'))
+                                <div class="alert alert-danger mt-2" role="alert">
+                                    <ul class="m-0">
+                                    @foreach($errors->get('date') as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Beschreibung</label>
                             <input type="text" name="description" id="description"
                             class="form-control"
                             value="{{old('description') ? old('description') : ''}}">

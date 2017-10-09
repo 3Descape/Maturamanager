@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\WorkingTime;
 use App\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class WorkingTimeController extends Controller
 {
@@ -51,13 +52,17 @@ class WorkingTimeController extends Controller
 
         $data = $this->validate($request,[
             'working_time' => 'required|integer|min:2',
+            'date' => 'required',
             'description' => 'required|string',
             'working_ticket' => 'sometimes|nullable|integer|exists:working_tickets,id'
         ]);
 
+        $date = Carbon::now()->addDays($data['date'])->format('Y-m-d');
+
         WorkingTime::create([
             'description' => $data['description'],
             'working_time' => $data['working_time'],
+            'date' => $date,
             'user_id' => Auth::user()->id,
             'working_ticket_id' => $data['working_ticket'],
         ]);
