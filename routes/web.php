@@ -24,6 +24,8 @@ Route::put('working_tickets/{working_ticket}/update_description', 'WorkingTicket
 Route::get('/tickets/übersicht', 'WorkingTicketController@index')->name('working_tickets_overview');
 Route::get('/tickets/manage', 'WorkingTicketManageController@index')->name('ticket_manage');
 
+Route::post('/working_tickets/admin', 'WorkingTicketAdminController@store')->name('working_tickets_store_admin');
+
 Route::get('/aufräumdienst', 'CleanUpPersonController@index')->name('cleanup_person');
 Route::post('/cleanUps/add', 'CleanUpPersonController@store');
 

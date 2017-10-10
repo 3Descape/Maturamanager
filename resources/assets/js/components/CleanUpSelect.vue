@@ -80,7 +80,7 @@ export default {
                 vue.days[index].setUser(response.data.data.user);
                 vue.msg.showMessage(response.data.message);
             }).catch(function (errors){
-                vue.msg.showMessage(response.data.message, "danger");
+                vue.msg.showMessage(errors.response.data.message, "danger");
             });
         },
     },

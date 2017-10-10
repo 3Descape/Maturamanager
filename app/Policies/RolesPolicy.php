@@ -43,11 +43,16 @@ class RolesPolicy
 
     public function cleanup_person(User $user)
     {
-        return $user->hasPermission('admin');
+        return $user->hasPermission('admin') || $user->hasPermission('admin');
     }
 
     public function user(User $user)
     {
         return $user->hasPermission('user');
+    }
+
+    public function manage_tickets(User $user)
+    {
+        return $user->hasPermission('manage_tickets') || $user->hasPermission('admin');
     }
 }

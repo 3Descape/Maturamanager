@@ -42,11 +42,11 @@
                 </li>
             @endcan
 
-            {{-- @can('admin', Auth::user())
+            @can('manage_tickets', Auth::user())
                 <li class="nav-item">
                     <a class="nav-link {{Request::route()->getName() == 'ticket_manage' ? 'active' : ''}}" href="{{route('ticket_manage')}}">Tickets Verwalten</a>
                 </li>
-            @endcan --}}
+            @endcan
 
 
             <li class="nav-item d-lg-none">

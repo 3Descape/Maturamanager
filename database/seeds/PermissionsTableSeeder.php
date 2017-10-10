@@ -30,5 +30,10 @@ class PermissionsTableSeeder extends Seeder
             'name' => 'cleanupPerson',
             'label' => 'Aufräumdienst'
         ]);
+
+        Permission::create([
+            'name' => 'manage_tickets',
+            'label' => 'Tickets verwalten'
+        ]);
     }
 }

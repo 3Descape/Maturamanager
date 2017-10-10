@@ -123,7 +123,8 @@ return [
         'name' => 'Name',
         'description' => 'Beschreibung',
         'working_time' => 'Arbeitszeit',
-        'working_ticket' => 'Ticket'
+        'working_ticket' => 'Ticket',
+        'author' => 'Author'
     ],
 
 ];

@@ -30,6 +30,7 @@ class WorkingTicketController extends Controller
     }
     public function show()
     {
+        //return Auth::user();
         $working_tickets = Auth::user()->working_tickets()->with('users', 'author', 'working_times')->get();
         $users = User::all();
         //return $working_tickets;
