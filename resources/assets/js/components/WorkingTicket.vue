@@ -210,7 +210,9 @@
             this.api.remove_user = `/working_tickets/${this.ticket.id}/remove_user`;
             this.api.update_description = `/working_tickets/${this.ticket.id}/update_description`;
 
-            this.selectedPerson = this.addableUsers[0].id
+            if(this.addableUsers.length){
+                this.selectedPerson = this.addableUsers[0].id
+            }
         }
     }
 </script>

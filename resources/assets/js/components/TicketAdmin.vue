@@ -27,13 +27,13 @@
         </div>
 
         <div class="form-group">
-            <label for="">Author</label>
+            <label for="">Autor</label>
             <multiselect
               v-model="author"
               :options="options"
               :custom-label="customLabel"
               track-by="id"
-              placeholder="Author"
+              placeholder="Autor"
               :allow-empty="false"
               >
             </multiselect>

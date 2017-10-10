@@ -63383,7 +63383,9 @@ var Message = function () {
         this.api.remove_user = "/working_tickets/" + this.ticket.id + "/remove_user";
         this.api.update_description = "/working_tickets/" + this.ticket.id + "/update_description";
 
-        this.selectedPerson = this.addableUsers[0].id;
+        if (this.addableUsers.length) {
+            this.selectedPerson = this.addableUsers[0].id;
+        }
     }
 });
 
@@ -65100,14 +65102,14 @@ var render = function() {
         "div",
         { staticClass: "form-group" },
         [
-          _c("label", { attrs: { for: "" } }, [_vm._v("Author")]),
+          _c("label", { attrs: { for: "" } }, [_vm._v("Autor")]),
           _vm._v(" "),
           _c("multiselect", {
             attrs: {
               options: _vm.options,
               "custom-label": _vm.customLabel,
               "track-by": "id",
-              placeholder: "Author",
+              placeholder: "Autor",
               "allow-empty": false
             },
             model: {

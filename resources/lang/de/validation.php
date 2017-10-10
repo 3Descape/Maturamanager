@@ -124,7 +124,7 @@ return [
         'description' => 'Beschreibung',
         'working_time' => 'Arbeitszeit',
         'working_ticket' => 'Ticket',
-        'author' => 'Author'
+        'author' => 'Autor'
     ],
 
 ];
