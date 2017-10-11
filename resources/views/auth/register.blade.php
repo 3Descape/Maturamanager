@@ -7,7 +7,7 @@
                 {{ csrf_field() }}
 
                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <label for="name">Name</label>
+                    <label for="name">Vorname Nachname</label>
 
                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus aria-describedby="nameHelpBlock">
 
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                    <label for="password">Password</label>
+                    <label for="password">Passwort</label>
 
                     <input id="password" type="password" class="form-control" name="password" required aria-describedby="passwordHelpBlock">
 
