@@ -29,7 +29,7 @@
                     </tbody>
                 </table>
 
-                <h2>Aufräumen</h2>
+                <h2>Schlussdienst</h2>
 
                 <clean-up-select :clean-up-prop="{{$cleanUps}}"></clean-up-select>
 
