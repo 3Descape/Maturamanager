@@ -24,10 +24,13 @@ class WorkingTimeController extends Controller
         $working_tickets = Auth::user()->working_tickets()->get();
 
         $working_times = Auth::user()->working_times()->with('working_ticket')->orderBy('created_at', 'desc')->paginate(5);
+        $time_count = Auth::user()->working_times()->where('confirmed', '1')->get()->sum('working_time');
+        //return $time_count;
 
         return view('sites.working_times.working_times', compact([
             'working_tickets',
-            'working_times'
+            'working_times',
+            'time_count'
         ]));
     }
 
