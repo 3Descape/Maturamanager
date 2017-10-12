@@ -13,7 +13,7 @@ class ManageWorkingTimeController extends Controller
 
     public function index()
     {
-        $unconfirmed = WorkingTime::unconfirmed()->with('user', 'working_ticket')->get();
+        $unconfirmed = WorkingTime::unconfirmed()->with('user', 'working_ticket')->orderBy('created_at', 'desc')->get();
         return view('sites.working_times.working_time_manage', compact([
             'unconfirmed'
         ]));
