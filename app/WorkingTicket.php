@@ -9,7 +9,7 @@ class WorkingTicket extends Model
 {
     protected $fillable = ['name', 'user_id', 'slug', 'markup', 'html', 'completed', 'thumbnail', 'visible'];
 
-    protected $appends = ['timeCount'];
+    protected $appends = ['timeCount', 'timeCountUser'];
 
     public function users()
     {
@@ -36,8 +36,13 @@ class WorkingTicket extends Model
         $this->attributes['description'] = nl2br($value);
     }
 
-    public function getTimeCountAttribute()
+    public function getTimeCountUserAttribute()
     {
         return round($this->working_times->where('working_ticket_id', $this->id)->where('user_id', Auth::user()->id)->sum('working_time')/60, 2);
+    }
+
+    public function getTimeCountAttribute()
+    {
+        return round($this->working_times->where('working_ticket_id', $this->id)->sum('working_time')/60, 2);
     }
 }

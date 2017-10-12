@@ -63705,6 +63705,8 @@ var render = function() {
           _c("p", { staticClass: "text-muted mt-4" }, [
             _vm._v(
               "Du hast " +
+                _vm._s(_vm.ticket.timeCountUser) +
+                " von gesamt " +
                 _vm._s(_vm.ticket.timeCount) +
                 " Stunden an diesem Ticket mitgearbeitet."
             )

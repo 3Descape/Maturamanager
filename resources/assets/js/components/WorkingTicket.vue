@@ -72,7 +72,7 @@
                 </div>
 
                 <!-- {{round($ticket->user_worked_time_on_ticket(Auth::user())/60, 2)}} -->
-                <p class="text-muted mt-4">Du hast {{ticket.timeCount}} Stunden an diesem Ticket mitgearbeitet.</p>
+                <p class="text-muted mt-4">Du hast {{ticket.timeCountUser}} von gesamt {{ticket.timeCount}} Stunden an diesem Ticket mitgearbeitet.</p>
             </div>
 
             <div class="card-footer text-muted">
