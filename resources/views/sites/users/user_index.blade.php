@@ -17,7 +17,12 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <th scope="row">{{$user->name}}</th>
+                                <th scope="row">
+                                    {{$user->name}}
+                                    @foreach ($user->roles as $role)
+                                        <span class="badge badge-pill badge-dark">{{$role->label}}</span>
+                                    @endforeach
+                                </th>
                                 <td class="d-flex justify-content-end">
                                     <a class="mr-2 btn btn-warning" href="{{route('roles_user', $user->slug)}}">
                                         <i class="fa fa-edit"></i>
