@@ -17,10 +17,12 @@ class NavigationController extends Controller
     public function home()
     {
         $mostRecentWorkingTimes = WorkingTime::mostRecent()->with('user')->get();
+        $total = WorkingTime::where('confirmed', '1')->get()->sum('working_time');
         $cleanUps = CleanUpPerson::where('date', "<=", Carbon::now()->addDays(7))->with('user')->get();
         return view('sites.home', compact([
             'mostRecentWorkingTimes',
-            'cleanUps'
+            'cleanUps',
+            'total'
         ]));
     }
 }

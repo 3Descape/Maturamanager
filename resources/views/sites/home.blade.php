@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col-md-10 mx-auto">
-                <h2>Zuletzt geleistete Arbeitszeiten</h2>
+                <h2 class="d-inline-block">Zuletzt geleistete Arbeitszeiten</h2><p class="text-muted d-lg-inline-block ml-2"><small>{{round($total/60, 2)}} Stunden wurden gesamt gearbeitet</small></p>
                 <table class="table table-sm table-responsive mt-4">
                     <thead>
                         <tr>
