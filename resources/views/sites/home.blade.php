@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-10 mx-auto">
                 <h2>Zuletzt geleistete Arbeitszeiten</h2>
-                <table class="table mt-4">
+                <table class="table table-sm table-responsive mt-4">
                     <thead>
                         <tr>
                             <th>Benutzer</th>
@@ -19,11 +19,13 @@
                         @foreach ($mostRecentWorkingTimes as $workingTime)
                             <tr>
                                 <td scope="row">
-                                    <a href="{{route('user_show', $workingTime->user->slug)}}">{{$workingTime->user->name}}</a>
+                                    <a href="{{route('user_show', $workingTime->user->slug)}}">
+                                        <small>{{$workingTime->user->name}}</small>
+                                        </a>
                                 </td>
-                                <td>{{$workingTime->working_time}}</td>
-                                <td>{{$workingTime->description}}</td>
-                                <td>{{$workingTime->date->format('d.m.Y')}}</td>
+                                <td><small>{{$workingTime->working_time}}</small></td>
+                                <td><small>{{$workingTime->description}}</small></td>
+                                <td><small>{{$workingTime->date->format('d.m')}}</small></td>
                             </tr>
                         @endforeach
                     </tbody>
