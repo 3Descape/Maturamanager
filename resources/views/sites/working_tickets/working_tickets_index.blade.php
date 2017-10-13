@@ -36,7 +36,7 @@
                                         <ul class="list-group my-2">
                                             @foreach ($ticket->users as $user)
                                                 <li class="list-group-item d-flex">
-                                                    <a href="{{route('user_show', $ticket->author->slug)}}">{{$user->name}}</a>
+                                                    <a href="{{route('user_show', $user->slug)}}">{{$user->name}}</a>
                                                 </li>
                                             @endforeach
                                         </ul>
