@@ -10,7 +10,7 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('user', auth()->user());
-        $users = User::with('roles')->get();
+        $users = User::with('roles')->orderBy('name')->get();
         return view('sites.users.user_index', compact([
             "users"
         ]));
