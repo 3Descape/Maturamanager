@@ -11,6 +11,7 @@ class WorkingTicketAdminController extends Controller
     use SlugTrait;
     public function store(Request $request)
     {
+        $this->authorize('manage_tickets', auth()->user());
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',

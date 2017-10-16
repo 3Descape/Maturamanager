@@ -15,6 +15,7 @@ class WorkingTicketManageController extends Controller
 
     public function index()
     {
+        $this->authorize('manage_tickets', auth()->user());
         $users = User::all();
         return view('sites.working_tickets.working_tickets_manage', compact([
             'users'

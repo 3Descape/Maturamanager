@@ -35,16 +35,6 @@ class WorkingTimeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -52,7 +42,6 @@ class WorkingTimeController extends Controller
      */
     public function store(Request $request)
     {
-
         $data = $this->validate($request,[
             'working_time' => 'required|integer|min:2',
             'date' => 'required',
@@ -71,50 +60,5 @@ class WorkingTimeController extends Controller
         ]);
 
         return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\WorkingTime  $workingTime
-     * @return \Illuminate\Http\Response
-     */
-    public function show(WorkingTime $workingTime)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\WorkingTime  $workingTime
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(WorkingTime $workingTime)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\WorkingTime  $workingTime
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, WorkingTime $workingTime)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\WorkingTime  $workingTime
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(WorkingTime $workingTime)
-    {
-        //
     }
 }

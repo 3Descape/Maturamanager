@@ -9,6 +9,7 @@ class UserController extends Controller
 {
     public function index()
     {
+        $this->authorize('user', auth()->user());
         $users = User::with('roles')->get();
         return view('sites.users.user_index', compact([
             "users"
@@ -16,6 +17,7 @@ class UserController extends Controller
     }
     public function show($user_slug)
     {
+        $this->authorize('user', auth()->user());
         $user = User::getBySlug($user_slug)->with(['working_times' => function($query){
             $query->where('confirmed', 1)->orderBy('created_at', 'desc');
         }, 'working_times.working_ticket'])->first();
@@ -39,8 +41,6 @@ class UserController extends Controller
             ],
             'password' => 'required|confirmed|min:4',
             'password_confirmation' => 'required'
-
-
         ],[
             'password_old.required' => 'Das alte Passwort muss angegeben werden.',
             'password_confirmation.required' => 'Du musst das neue Passwort bestädigen.',
