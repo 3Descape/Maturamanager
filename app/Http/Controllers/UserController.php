@@ -17,7 +17,6 @@ class UserController extends Controller
     }
     public function show($user_slug)
     {
-        $this->authorize('user', auth()->user());
         $user = User::getBySlug($user_slug)->with(['working_times' => function($query){
             $query->where('confirmed', 1)->orderBy('created_at', 'desc');
         }, 'working_times.working_ticket'])->first();
