@@ -30,8 +30,8 @@ Route::get('/aufräumdienst', 'CleanUpPersonController@index')->name('cleanup_pe
 Route::post('/cleanUps/add', 'CleanUpPersonController@store');
 
 Route::post('/working_time/add', 'WorkingTimeController@store')->name('working_time_add');
-Route::get('/working_time/manage', 'ManageWorkingTimeController@index')->name('working_time_manage');
-Route::put('/working_time/{workingTime}/toggleConfirm', 'ManageWorkingTimeController@update')->name('working_time_toggle');
+Route::get('/working_time/manage', 'WorkingTimeManageController@index')->name('working_time_manage');
+Route::put('/working_time/{workingTime}/toggleConfirm', 'WorkingTimeManageController@update')->name('working_time_toggle');
 
 
 Route::get('/berechtigungen', 'RolesController@index')->name('roles');

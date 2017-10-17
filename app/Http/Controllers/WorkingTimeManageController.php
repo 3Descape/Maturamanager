@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\WorkingTime;
-class ManageWorkingTimeController extends Controller
+class WorkingTimeManageController extends Controller
 {
     public function __construct()
     {
@@ -13,7 +13,7 @@ class ManageWorkingTimeController extends Controller
 
     public function index()
     {
-        $this->authorize('superadmin', auth()->user());
+        $this->authorize('working_time', auth()->user());
         $unconfirmed = WorkingTime::unconfirmed()->with('user', 'working_ticket')->orderBy('created_at', 'desc')->get();
         return view('sites.working_times.working_time_manage', compact([
             'unconfirmed'
@@ -22,7 +22,7 @@ class ManageWorkingTimeController extends Controller
 
     public function update(WorkingTime $workingTime)
     {
-        $this->authorize('superadmin', auth()->user());
+        $this->authorize('working_time', auth()->user());
         $workingTime->update([
             'confirmed' => !$workingTime->confirmed
         ]);
