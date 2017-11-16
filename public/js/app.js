@@ -63866,6 +63866,7 @@ var moment = __webpack_require__(0);
         }
     },
     created: function created() {
+        moment.locale('de');
         this.workingTimes.map(function (element) {
             element.working = false;
             element.date = moment(element.date).format("dd DD.MM");
