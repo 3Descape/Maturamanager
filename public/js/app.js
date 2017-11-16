@@ -63835,12 +63835,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var moment = __webpack_require__(0);
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['workingTimesProp'],
     data: function data() {
         return {
             workingTimes: this.workingTimesProp
-
         };
     },
     methods: {
@@ -63868,6 +63868,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         this.workingTimes.map(function (element) {
             element.working = false;
+            element.date = moment(element.date).format("dd DD.MM");
         });
     }
 });
@@ -63923,11 +63924,7 @@ var render = function() {
                 [
                   _vm._v(
                     "\n                    " +
-                      _vm._s(
-                        work.working_ticket != null
-                          ? work.working_ticket.name
-                          : "-"
-                      ) +
+                      _vm._s(work.date) +
                       "\n                "
                   )
                 ]
@@ -64006,7 +64003,7 @@ var staticRenderFns = [
         _c(
           "div",
           { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
-          [_c("p", { staticClass: "m-0" }, [_vm._v("Ticket")])]
+          [_c("p", { staticClass: "m-0" }, [_vm._v("Datum")])]
         ),
         _vm._v(" "),
         _c(
