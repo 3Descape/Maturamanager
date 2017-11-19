@@ -1896,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(170)("./" + name);
+            __webpack_require__(165)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -16772,8 +16772,9 @@ window.Marked = __webpack_require__(156);
 
 Vue.component('workingticket', __webpack_require__(157));
 Vue.component('working-time-confirm', __webpack_require__(163));
-Vue.component('clean-up-select', __webpack_require__(166));
+Vue.component('clean-up-select', __webpack_require__(167));
 Vue.component('ticket-admin', __webpack_require__(172));
+Vue.component('oneclick-submit', __webpack_require__(189));
 var App = new Vue({
   el: '#app'
 });
@@ -63753,7 +63754,7 @@ var normalizeComponent = __webpack_require__(5)
 /* script */
 var __vue_script__ = __webpack_require__(164)
 /* template */
-var __vue_template__ = __webpack_require__(165)
+var __vue_template__ = __webpack_require__(166)
 /* styles */
 var __vue_styles__ = null
 /* scopeId */
@@ -63876,401 +63877,6 @@ var moment = __webpack_require__(0);
 
 /***/ }),
 /* 165 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-12 mt-4" }, [
-    _c(
-      "ul",
-      { staticClass: "list-group" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._l(_vm.workingTimes, function(work) {
-          return _c("li", { staticClass: "list-group-item p-1" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
-                _c("span", { staticClass: "m-0 ml-sm-3" }, [
-                  _vm._v(_vm._s(work.user.name))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
-                _vm._v(
-                  "\n                    " + _vm._s(work.working_time) + " "
-                ),
-                _c("span", { staticClass: "text-muted" }, [_vm._v("min.")])
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "col-lg-5 col-sm-10 col-12 order-4 order-lg-3 "
-                },
-                [
-                  _c("span", { staticClass: "m-0 ml-sm-3" }, [
-                    _vm._v(
-                      _vm._s(work.description != null ? work.description : "-")
-                    )
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(work.date) +
-                      "\n                "
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-lg-1 d-lg-flex col-sm-2 col-12 order-5" },
-                [
-                  _c(
-                    "form",
-                    {
-                      staticClass: "align-self-start ml-auto",
-                      attrs: { action: "index.html", method: "post" },
-                      on: {
-                        submit: function($event) {
-                          $event.preventDefault()
-                          _vm.update(work.id)
-                        }
-                      }
-                    },
-                    [
-                      !work.working
-                        ? _c("button", {
-                            staticClass: "fa btn",
-                            class: [
-                              work.confirmed
-                                ? "fa-check btn-success"
-                                : "fa-times btn-danger"
-                            ],
-                            attrs: { type: "submit" }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      work.working
-                        ? _c("i", { staticClass: "btn btn-primary" }, [
-                            _c("i", { staticClass: "fa-spinner fa fa-pulse" })
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ]
-              )
-            ])
-          ])
-        })
-      ],
-      2
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-group-item p-1" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
-          _c("p", { staticClass: "m-0 ml-3" }, [_vm._v("Person")])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
-          _c("p", { staticClass: "m-0" }, [
-            _vm._v("Zeit "),
-            _c("i", { staticClass: "text-muted" }, [_vm._v("in Minuten")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-lg-5 col-sm-12 col-12 order-4 order-lg-3" },
-          [_c("p", { staticClass: "ml-3 ml-lg-0" }, [_vm._v("Beschreibung")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
-          [_c("p", { staticClass: "m-0" }, [_vm._v("Datum")])]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "col-lg-1 col-sm-4 col-12 d-lg-flex d-none order-5" },
-          [_c("p", { staticClass: "ml-auto m-0 mr-3" }, [_vm._v("Bestätigen")])]
-        )
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-382efeda", module.exports)
-  }
-}
-
-/***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-function injectStyle (ssrContext) {
-  if (disposed) return
-  __webpack_require__(167)
-}
-var normalizeComponent = __webpack_require__(5)
-/* script */
-var __vue_script__ = __webpack_require__(169)
-/* template */
-var __vue_template__ = __webpack_require__(171)
-/* styles */
-var __vue_styles__ = injectStyle
-/* scopeId */
-var __vue_scopeId__ = "data-v-97f477c2"
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources\\assets\\js\\components\\CleanUpSelect.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] CleanUpSelect.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-97f477c2", Component.options)
-  } else {
-    hotAPI.reload("data-v-97f477c2", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(168);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(4)("264492d8", content, false);
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-97f477c2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CleanUpSelect.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-97f477c2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CleanUpSelect.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n.info[data-v-97f477c2]{\n    position: absolute;\n    top: 5px;\n    right: 0;\n    z-index: 50;\n}\n.fade-enter-active[data-v-97f477c2], .fade-leave-active[data-v-97f477c2]{\n    transition: opacity 0.2s ease-out;\n}\n.fade-enter[data-v-97f477c2], .fade-leave-to[data-v-97f477c2]{\n    opacity: 0;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 169 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-var moment = __webpack_require__(0);
-
-var Message = function () {
-    function Message() {
-        _classCallCheck(this, Message);
-
-        this.show = false;
-        this.type = "success";
-        this.message = "";
-    }
-
-    _createClass(Message, [{
-        key: "showMessage",
-        value: function showMessage(msg) {
-            var _this = this;
-
-            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";
-
-            this.message = msg;
-            this.type = type;
-            this.show = true;
-            setTimeout(function () {
-                _this.show = false;
-            }, 2000);
-        }
-    }]);
-
-    return Message;
-}();
-
-var Day = function () {
-    function Day() {
-        _classCallCheck(this, Day);
-
-        this.date = "";
-        this.isDefault = true;
-        this.user = {};
-    }
-
-    _createClass(Day, [{
-        key: "setDate",
-        value: function setDate(date) {
-            this.date = date;
-        }
-    }, {
-        key: "setUser",
-        value: function setUser(user) {
-            this.isDefault = false;
-            this.user = user;
-        }
-    }]);
-
-    return Day;
-}();
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['cleanUpProp'],
-    data: function data() {
-        return {
-            days: [],
-            cleanUps: this.cleanUpProp,
-            msg: new Message()
-        };
-    },
-    methods: {
-        addCleanup: function addCleanup(index) {
-            var vue = this;
-            axios.post('/cleanUps/add', {
-                date: moment(vue.days[index].date).format('YYYY-MM-DD'),
-                user_id: auth.id
-            }).then(function (response) {
-                vue.days[index].setUser(response.data.data.user);
-                vue.msg.showMessage(response.data.message);
-            }).catch(function (errors) {
-                vue.msg.showMessage(errors.response.data.message, "danger");
-            });
-        }
-    },
-    created: function created() {
-        var days = [];
-        var taken = [];
-        var dates = this.cleanUps.map(function (item) {
-            return moment(item.date, 'YYYY-MM-DD').format();
-        });
-        for (var i = 0; i < 6; i++) {
-            var day = moment().add(i, "days");
-            day.hours(0);
-            day.minutes(0);
-            day.seconds(0);
-            day.milliseconds(0);
-            day = moment(day).format();
-            var e = new Day();
-            e.setDate(day);
-            if (dates.indexOf(day) >= 0) {
-                var item = this.cleanUps[dates.indexOf(day)];
-                e.setUser(item.user);
-                days.push(e);
-            } else {
-                days.push(e);
-            }
-        }
-        this.days = days;
-    },
-    filters: {
-        date: function date(value) {
-            return moment(value).format('D.MM.YYYY');
-        }
-    },
-    computed: {
-        messageClass: function messageClass() {
-            return 'alert-' + this.msg.type;
-        }
-    }
-});
-
-/***/ }),
-/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -64519,7 +64125,402 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 170;
+webpackContext.id = 165;
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "col-md-12 mt-4" }, [
+    _c(
+      "ul",
+      { staticClass: "list-group" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._l(_vm.workingTimes, function(work) {
+          return _c("li", { staticClass: "list-group-item p-1" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
+                _c("span", { staticClass: "m-0 ml-sm-3" }, [
+                  _vm._v(_vm._s(work.user.name))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
+                _vm._v(
+                  "\n                    " + _vm._s(work.working_time) + " "
+                ),
+                _c("span", { staticClass: "text-muted" }, [_vm._v("min.")])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "col-lg-5 col-sm-10 col-12 order-4 order-lg-3 "
+                },
+                [
+                  _c("span", { staticClass: "m-0 ml-sm-3" }, [
+                    _vm._v(
+                      _vm._s(work.description != null ? work.description : "-")
+                    )
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
+                [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(work.date) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-lg-1 d-lg-flex col-sm-2 col-12 order-5" },
+                [
+                  _c(
+                    "form",
+                    {
+                      staticClass: "align-self-start ml-auto",
+                      attrs: { action: "index.html", method: "post" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.update(work.id)
+                        }
+                      }
+                    },
+                    [
+                      !work.working
+                        ? _c("button", {
+                            staticClass: "fa btn",
+                            class: [
+                              work.confirmed
+                                ? "fa-check btn-success"
+                                : "fa-times btn-danger"
+                            ],
+                            attrs: { type: "submit" }
+                          })
+                        : _vm._e(),
+                      _vm._v(" "),
+                      work.working
+                        ? _c("i", { staticClass: "btn btn-primary" }, [
+                            _c("i", { staticClass: "fa-spinner fa fa-pulse" })
+                          ])
+                        : _vm._e()
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        })
+      ],
+      2
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item p-1" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-1" }, [
+          _c("p", { staticClass: "m-0 ml-3" }, [_vm._v("Person")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-lg-2 col-sm-4 col-12 order-2" }, [
+          _c("p", { staticClass: "m-0" }, [
+            _vm._v("Zeit "),
+            _c("i", { staticClass: "text-muted" }, [_vm._v("in Minuten")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-5 col-sm-12 col-12 order-4 order-lg-3" },
+          [_c("p", { staticClass: "ml-3 ml-lg-0" }, [_vm._v("Beschreibung")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-2 col-sm-4 col-12 order-3 order-lg-4" },
+          [_c("p", { staticClass: "m-0" }, [_vm._v("Datum")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-lg-1 col-sm-4 col-12 d-lg-flex d-none order-5" },
+          [_c("p", { staticClass: "ml-auto m-0 mr-3" }, [_vm._v("Bestätigen")])]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-382efeda", module.exports)
+  }
+}
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(168)
+}
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(170)
+/* template */
+var __vue_template__ = __webpack_require__(171)
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-97f477c2"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\CleanUpSelect.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] CleanUpSelect.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-97f477c2", Component.options)
+  } else {
+    hotAPI.reload("data-v-97f477c2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(169);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("264492d8", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-97f477c2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CleanUpSelect.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-97f477c2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./CleanUpSelect.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.info[data-v-97f477c2]{\n    position: absolute;\n    top: 5px;\n    right: 0;\n    z-index: 50;\n}\n.fade-enter-active[data-v-97f477c2], .fade-leave-active[data-v-97f477c2]{\n    transition: opacity 0.2s ease-out;\n}\n.fade-enter[data-v-97f477c2], .fade-leave-to[data-v-97f477c2]{\n    opacity: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 170 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+var moment = __webpack_require__(0);
+
+var Message = function () {
+    function Message() {
+        _classCallCheck(this, Message);
+
+        this.show = false;
+        this.type = "success";
+        this.message = "";
+    }
+
+    _createClass(Message, [{
+        key: "showMessage",
+        value: function showMessage(msg) {
+            var _this = this;
+
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "success";
+
+            this.message = msg;
+            this.type = type;
+            this.show = true;
+            setTimeout(function () {
+                _this.show = false;
+            }, 2000);
+        }
+    }]);
+
+    return Message;
+}();
+
+var Day = function () {
+    function Day() {
+        _classCallCheck(this, Day);
+
+        this.date = "";
+        this.isDefault = true;
+        this.user = {};
+    }
+
+    _createClass(Day, [{
+        key: "setDate",
+        value: function setDate(date) {
+            this.date = date;
+        }
+    }, {
+        key: "setUser",
+        value: function setUser(user) {
+            this.isDefault = false;
+            this.user = user;
+        }
+    }]);
+
+    return Day;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['cleanUpProp'],
+    data: function data() {
+        return {
+            days: [],
+            cleanUps: this.cleanUpProp,
+            msg: new Message()
+        };
+    },
+    methods: {
+        addCleanup: function addCleanup(index) {
+            var vue = this;
+            axios.post('/cleanUps/add', {
+                date: moment(vue.days[index].date).format('YYYY-MM-DD'),
+                user_id: auth.id
+            }).then(function (response) {
+                vue.days[index].setUser(response.data.data.user);
+                vue.msg.showMessage(response.data.message);
+            }).catch(function (errors) {
+                vue.msg.showMessage(errors.response.data.message, "danger");
+            });
+        }
+    },
+    created: function created() {
+        var days = [];
+        var taken = [];
+        var dates = this.cleanUps.map(function (item) {
+            return moment(item.date, 'YYYY-MM-DD').format();
+        });
+        for (var i = 0; i < 6; i++) {
+            var day = moment().add(i, "days");
+            day.hours(0);
+            day.minutes(0);
+            day.seconds(0);
+            day.milliseconds(0);
+            day = moment(day).format();
+            var e = new Day();
+            e.setDate(day);
+            if (dates.indexOf(day) >= 0) {
+                var item = this.cleanUps[dates.indexOf(day)];
+                e.setUser(item.user);
+                days.push(e);
+            } else {
+                days.push(e);
+            }
+        }
+        this.days = days;
+    },
+    filters: {
+        date: function date(value) {
+            return moment(value).format('D.MM.YYYY');
+        }
+    },
+    computed: {
+        messageClass: function messageClass() {
+            return 'alert-' + this.msg.type;
+        }
+    }
+});
 
 /***/ }),
 /* 171 */
@@ -65187,6 +65188,83 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(5)
+/* script */
+var __vue_script__ = __webpack_require__(190)
+/* template */
+var __vue_template__ = null
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\OneClickSubmit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-60a0134b", Component.options)
+  } else {
+    hotAPI.reload("data-v-60a0134b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            isDisabled: false
+        };
+    },
+    methods: {
+        submitted: function submitted() {
+            this.isDisabled = true;
+            var vue = this;
+            setTimeout(function () {
+                vue.isDisabled = false;
+            }, 1500);
+        }
+    }
+});
 
 /***/ })
 /******/ ]);

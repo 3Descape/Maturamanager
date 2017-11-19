@@ -96,9 +96,11 @@
                             @endif
 
                         </div>
-                        <button type="submit" class="form-control btn btn-success">
-                            <i class="fa fa-plus"></i> Hinzufügen
-                        </button>
+                        <oneclick-submit inline-template>
+                            <button type="submit" :disabled="isDisabled" @click="submitted" class="form-control btn btn-success">
+                                <i class="fa fa-plus"></i> Hinzufügen
+                            </button>
+                        </oneclick-submit>
                         {{ csrf_field() }}
                     </form>
 
