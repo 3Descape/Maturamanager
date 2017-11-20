@@ -101,7 +101,7 @@
                                 <button type="submit" v-show="!isDisabled" @click="submitted" class="form-control btn btn-success">
                                     <i class="fa fa-plus"></i> Hinzufügen
                                 </button>
-                                <div href="" v-show="isDisabled" class="form-control btn btn-success">
+                                <div href="" v-show="isDisabled" style="display:none;" class="form-control btn btn-success">
                                     <i class="fa fa-cog fa-spin  fa-fw"></i>
                                 </div>
                             </div>
