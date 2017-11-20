@@ -97,11 +97,13 @@
 
                         </div>
                         <oneclick-submit inline-template>
-                            <button type="submit" v-if="!isDisabled" @click="submitted" class="form-control btn btn-success">
-                                <i class="fa fa-plus"></i> Hinzufügen
-                            </button>
-                            <div href="" v-else class="form-control btn btn-success">
-                                <i class="fa fa-cog fa-spin  fa-fw"></i>
+                            <div>
+                                <button type="submit" v-show="!isDisabled" @click="submitted" class="form-control btn btn-success">
+                                    <i class="fa fa-plus"></i> Hinzufügen
+                                </button>
+                                <div href="" v-show="isDisabled" class="form-control btn btn-success">
+                                    <i class="fa fa-cog fa-spin  fa-fw"></i>
+                                </div>
                             </div>
                         </oneclick-submit>
                         {{ csrf_field() }}
